@@ -1,10 +1,567 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>RCS Tech World</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+<title>RCS TECH WORLD | Refurbished Laptops</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    background:#0b0f19;
+    color:white;
+    overflow-x:hidden;
+}
+
+/* NAVBAR */
+
+nav{
+    width:100%;
+    background:#111827;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:20px 8%;
+    position:sticky;
+    top:0;
+    z-index:1000;
+    box-shadow:0 2px 10px rgba(0,0,0,0.5);
+}
+
+.logo{
+    font-size:28px;
+    font-weight:700;
+    color:#4fc3f7;
+}
+
+nav ul{
+    display:flex;
+    list-style:none;
+    gap:30px;
+}
+
+nav ul li a{
+    text-decoration:none;
+    color:white;
+    transition:0.3s;
+}
+
+nav ul li a:hover{
+    color:#4fc3f7;
+}
+
+/* HERO */
+
+.hero{
+    min-height:90vh;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:80px 8%;
+    gap:40px;
+    flex-wrap:wrap;
+}
+
+.hero-text{
+    flex:1;
+    min-width:300px;
+}
+
+.hero-text h1{
+    font-size:60px;
+    line-height:1.2;
+    margin-bottom:20px;
+}
+
+.hero-text h1 span{
+    color:#4fc3f7;
+}
+
+.hero-text p{
+    font-size:18px;
+    color:#cbd5e1;
+    margin-bottom:30px;
+    line-height:1.8;
+}
+
+.hero-btns{
+    display:flex;
+    gap:20px;
+    flex-wrap:wrap;
+}
+
+.btn{
+    padding:14px 30px;
+    border:none;
+    border-radius:8px;
+    text-decoration:none;
+    font-weight:600;
+    transition:0.3s;
+}
+
+.primary{
+    background:#4fc3f7;
+    color:black;
+}
+
+.primary:hover{
+    background:#38bdf8;
+    transform:translateY(-3px);
+}
+
+.secondary{
+    border:2px solid #4fc3f7;
+    color:#4fc3f7;
+}
+
+.secondary:hover{
+    background:#4fc3f7;
+    color:black;
+}
+
+.hero-image{
+    flex:1;
+    min-width:300px;
+    text-align:center;
+}
+
+.hero-image img{
+    width:100%;
+    max-width:550px;
+    border-radius:20px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.5);
+}
+
+/* SECTION */
+
+section{
+    padding:80px 8%;
+}
+
+.section-title{
+    text-align:center;
+    font-size:42px;
+    margin-bottom:60px;
+    color:#4fc3f7;
+}
+
+/* CARDS */
+
+.cards{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+    gap:30px;
+}
+
+.card{
+    background:#111827;
+    border-radius:18px;
+    overflow:hidden;
+    transition:0.4s;
+    border:1px solid #1f2937;
+}
+
+.card:hover{
+    transform:translateY(-10px);
+    box-shadow:0 10px 30px rgba(79,195,247,0.2);
+}
+
+.card img{
+    width:100%;
+    height:220px;
+    object-fit:cover;
+}
+
+.card-content{
+    padding:25px;
+}
+
+.card-content h3{
+    margin-bottom:10px;
+    color:#4fc3f7;
+}
+
+.card-content p{
+    color:#cbd5e1;
+    font-size:14px;
+    line-height:1.7;
+}
+
+/* FEATURES */
+
+.features{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:25px;
+}
+
+.feature{
+    background:#111827;
+    padding:30px;
+    border-radius:15px;
+    text-align:center;
+    transition:0.3s;
+}
+
+.feature:hover{
+    transform:translateY(-8px);
+}
+
+.feature h3{
+    color:#4fc3f7;
+    margin-bottom:15px;
+}
+
+/* ABOUT */
+
+.about{
+    background:#111827;
+    border-radius:20px;
+    padding:50px;
+    line-height:2;
+}
+
+/* CONTACT */
+
+.contact-box{
+    background:#111827;
+    padding:50px;
+    border-radius:20px;
+    text-align:center;
+}
+
+.contact-box h2{
+    color:#4fc3f7;
+    margin-bottom:20px;
+}
+
+.contact-box p{
+    margin-bottom:12px;
+    color:#cbd5e1;
+}
+
+/* FOOTER */
+
+footer{
+    background:#020617;
+    text-align:center;
+    padding:25px;
+    margin-top:40px;
+    color:#94a3b8;
+}
+
+/* WHATSAPP */
+
+.whatsapp{
+    position:fixed;
+    bottom:25px;
+    right:25px;
+    background:#25d366;
+    color:white;
+    width:65px;
+    height:65px;
+    border-radius:50%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:32px;
+    text-decoration:none;
+    box-shadow:0 10px 25px rgba(0,0,0,0.4);
+    z-index:1000;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:768px){
+
+.hero-text h1{
+    font-size:40px;
+}
+
+nav{
+    flex-direction:column;
+    gap:20px;
+}
+
+nav ul{
+    flex-wrap:wrap;
+    justify-content:center;
+}
+
+}
+
+</style>
 </head>
-<body style="font-family:Arial; text-align:center; margin-top:100px;">
-    <h1>Welcome to RCS Tech World 🚀</h1>
-    <p>My GitHub Pages website is live.</p>
+
+<body>
+
+<!-- NAVBAR -->
+
+<nav>
+
+<div class="logo">RCS TECH WORLD</div>
+
+<ul>
+<li><a href="#">Home</a></li>
+<li><a href="#products">Products</a></li>
+<li><a href="#services">Services</a></li>
+<li><a href="#about">About</a></li>
+<li><a href="#contact">Contact</a></li>
+</ul>
+
+</nav>
+
+<!-- HERO -->
+
+<section class="hero">
+
+<div class="hero-text">
+
+<h1>
+Premium <span>Refurbished</span><br>
+Business Laptops
+</h1>
+
+<p>
+Affordable Dell, HP & Lenovo laptops for students,
+office work, coding, business and professional use.
+Certified refurbished laptops with warranty support.
+</p>
+
+<div class="hero-btns">
+
+<a href="#products" class="btn primary">
+Shop Laptops
+</a>
+
+<a href="https://wa.me/918168411895" class="btn secondary">
+WhatsApp Us
+</a>
+
+</div>
+
+</div>
+
+<div class="hero-image">
+
+<img src="https://images.unsplash.com/photo-1496181133206-80ce9b88a853?q=80&w=1200&auto=format&fit=crop" alt="Laptop">
+
+</div>
+
+</section>
+
+<!-- PRODUCTS -->
+
+<section id="products">
+
+<h2 class="section-title">
+Featured Refurbished Laptops
+</h2>
+
+<div class="cards">
+
+<div class="card">
+
+<img src="https://images.unsplash.com/photo-1517336714739-489689fd1ca8?q=80&w=1200&auto=format&fit=crop">
+
+<div class="card-content">
+
+<h3>Dell Latitude Series</h3>
+
+<p>
+Best for office work, students and business use.
+Powerful performance with SSD upgrade options.
+</p>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<img src="https://images.unsplash.com/photo-1515879218367-8466d910aaa4?q=80&w=1200&auto=format&fit=crop">
+
+<div class="card-content">
+
+<h3>HP EliteBook</h3>
+
+<p>
+Premium business laptops with excellent build quality,
+battery backup and fast performance.
+</p>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=1200&auto=format&fit=crop">
+
+<div class="card-content">
+
+<h3>Lenovo ThinkPad</h3>
+
+<p>
+Professional coding and office laptops trusted
+by developers and companies worldwide.
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- FEATURES -->
+
+<section id="services">
+
+<h2 class="section-title">
+Why Choose Us
+</h2>
+
+<div class="features">
+
+<div class="feature">
+<h3>Certified Refurbished</h3>
+<p>Fully tested and quality checked laptops.</p>
+</div>
+
+<div class="feature">
+<h3>Warranty Support</h3>
+<p>Warranty available on selected laptops.</p>
+</div>
+
+<div class="feature">
+<h3>Affordable Pricing</h3>
+<p>Premium business laptops at budget prices.</p>
+</div>
+
+<div class="feature">
+<h3>SSD Upgrades</h3>
+<p>Fast SSD and RAM upgrade support available.</p>
+</div>
+
+<div class="feature">
+<h3>Bulk Orders</h3>
+<p>Corporate and institutional laptop supply.</p>
+</div>
+
+<div class="feature">
+<h3>Repair Services</h3>
+<p>Laptop repair, servicing and maintenance support.</p>
+</div>
+
+</div>
+
+</section>
+
+<!-- ABOUT -->
+
+<section id="about">
+
+<h2 class="section-title">
+About RCS TECH WORLD
+</h2>
+
+<div class="about">
+
+<p>
+RCS TECH WORLD is a trusted refurbished laptop and IT solutions provider
+based in Uttam Nagar, New Delhi.
+</p>
+
+<br>
+
+<p>
+We deal in certified refurbished laptops, desktops, accessories,
+software installation, repair services and bulk corporate requirements.
+</p>
+
+<br>
+
+<p>
+We specialize in Dell Latitude, HP EliteBook,
+Lenovo ThinkPad and professional business laptops
+at affordable prices.
+</p>
+
+<br>
+
+<p>
+We are connected with leading technology distribution ecosystems
+and focus on delivering quality products with customer trust.
+</p>
+
+</div>
+
+</section>
+
+<!-- CONTACT -->
+
+<section id="contact">
+
+<h2 class="section-title">
+Contact Us
+</h2>
+
+<div class="contact-box">
+
+<h2>RCS TECH WORLD</h2>
+
+<p>
+RZ-2, Vipin Garden,<br>
+Near Fakkad Baba Mandir,<br>
+Uttam Nagar, New Delhi - 110059
+</p>
+
+<p>
+📞 +91 8168411895
+</p>
+
+<p>
+✉ rcstechworld@gmail.com
+</p>
+
+<p>
+🕒 Mon - Sat : 10AM to 8PM
+</p>
+
+<a href="https://wa.me/918168411895" class="btn primary">
+Chat on WhatsApp
+</a>
+
+</div>
+
+</section>
+
+<!-- FOOTER -->
+
+<footer>
+
+© 2019 RCS TECH WORLD | Refurbished Laptop Store
+
+</footer>
+
+<!-- WHATSAPP -->
+
+<a href="https://wa.me/918168411895" class="whatsapp">
+☎
+</a>
+
 </body>
 </html>
