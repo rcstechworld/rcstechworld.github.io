@@ -1,13 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>RCS TECH WORLD | Refurbished Laptops</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
 <style>
 
@@ -15,12 +18,13 @@
     margin:0;
     padding:0;
     box-sizing:border-box;
-    font-family:'Poppins',sans-serif;
+    font-family:'Montserrat',sans-serif;
+    scroll-behavior:smooth;
 }
 
 body{
-    background:#0b0f19;
-    color:white;
+    background:#f8fafc;
+    color:#111827;
     overflow-x:hidden;
 }
 
@@ -28,7 +32,7 @@ body{
 
 nav{
     width:100%;
-    background:#111827;
+    background:white;
     display:flex;
     justify-content:space-between;
     align-items:center;
@@ -36,29 +40,30 @@ nav{
     position:sticky;
     top:0;
     z-index:1000;
-    box-shadow:0 2px 10px rgba(0,0,0,0.5);
+    box-shadow:0 2px 15px rgba(0,0,0,0.08);
 }
 
 .logo{
-    font-size:28px;
-    font-weight:700;
-    color:#4fc3f7;
+    font-size:30px;
+    font-weight:800;
+    color:#2563eb;
 }
 
 nav ul{
     display:flex;
     list-style:none;
-    gap:30px;
+    gap:35px;
 }
 
 nav ul li a{
     text-decoration:none;
-    color:white;
+    color:#111827;
+    font-weight:600;
     transition:0.3s;
 }
 
 nav ul li a:hover{
-    color:#4fc3f7;
+    color:#2563eb;
 }
 
 /* HERO */
@@ -69,8 +74,9 @@ nav ul li a:hover{
     align-items:center;
     justify-content:space-between;
     padding:80px 8%;
-    gap:40px;
+    gap:50px;
     flex-wrap:wrap;
+    background:linear-gradient(to right,#eff6ff,#ffffff);
 }
 
 .hero-text{
@@ -79,20 +85,21 @@ nav ul li a:hover{
 }
 
 .hero-text h1{
-    font-size:60px;
+    font-size:65px;
     line-height:1.2;
-    margin-bottom:20px;
+    margin-bottom:25px;
+    font-weight:800;
 }
 
 .hero-text h1 span{
-    color:#4fc3f7;
+    color:#2563eb;
 }
 
 .hero-text p{
-    font-size:18px;
-    color:#cbd5e1;
-    margin-bottom:30px;
-    line-height:1.8;
+    font-size:19px;
+    line-height:1.9;
+    color:#475569;
+    margin-bottom:35px;
 }
 
 .hero-btns{
@@ -102,115 +109,164 @@ nav ul li a:hover{
 }
 
 .btn{
-    padding:14px 30px;
-    border:none;
-    border-radius:8px;
+    padding:15px 35px;
+    border-radius:10px;
     text-decoration:none;
-    font-weight:600;
+    font-weight:700;
     transition:0.3s;
 }
 
 .primary{
-    background:#4fc3f7;
-    color:black;
+    background:#2563eb;
+    color:white;
 }
 
 .primary:hover{
-    background:#38bdf8;
-    transform:translateY(-3px);
+    transform:translateY(-4px);
+    background:#1d4ed8;
 }
 
 .secondary{
-    border:2px solid #4fc3f7;
-    color:#4fc3f7;
+    border:2px solid #2563eb;
+    color:#2563eb;
 }
 
 .secondary:hover{
-    background:#4fc3f7;
-    color:black;
+    background:#2563eb;
+    color:white;
 }
 
 .hero-image{
     flex:1;
     min-width:300px;
-    text-align:center;
 }
 
 .hero-image img{
     width:100%;
-    max-width:550px;
-    border-radius:20px;
-    box-shadow:0 10px 30px rgba(0,0,0,0.5);
+    border-radius:25px;
+    box-shadow:0 20px 40px rgba(0,0,0,0.15);
 }
 
 /* SECTION */
 
 section{
-    padding:80px 8%;
+    padding:90px 8%;
 }
 
 .section-title{
-    text-align:center;
-    font-size:42px;
+    font-size:50px;
     margin-bottom:60px;
-    color:#4fc3f7;
+    font-weight:800;
+    text-align:center;
 }
 
-/* CARDS */
+/* CATEGORIES */
 
-.cards{
+.categories{
     display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
     gap:30px;
 }
 
-.card{
-    background:#111827;
-    border-radius:18px;
+.category-card{
+    position:relative;
     overflow:hidden;
-    transition:0.4s;
-    border:1px solid #1f2937;
+    border-radius:20px;
 }
 
-.card:hover{
-    transform:translateY(-10px);
-    box-shadow:0 10px 30px rgba(79,195,247,0.2);
-}
-
-.card img{
+.category-card img{
     width:100%;
-    height:220px;
+    height:320px;
     object-fit:cover;
+    transition:0.5s;
 }
 
-.card-content{
+.category-card:hover img{
+    transform:scale(1.08);
+}
+
+.overlay{
+    position:absolute;
+    bottom:0;
+    left:0;
+    width:100%;
+    background:linear-gradient(to top,rgba(0,0,0,0.9),transparent);
+    padding:30px;
+    color:white;
+}
+
+.overlay h3{
+    font-size:28px;
+    margin-bottom:10px;
+}
+
+.overlay p{
+    font-size:15px;
+}
+
+/* PRODUCTS */
+
+.products{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:30px;
+}
+
+.product-card{
+    background:white;
+    border-radius:20px;
+    overflow:hidden;
+    box-shadow:0 5px 20px rgba(0,0,0,0.08);
+    transition:0.4s;
+}
+
+.product-card:hover{
+    transform:translateY(-10px);
+}
+
+.product-card img{
+    width:100%;
+    height:250px;
+    object-fit:contain;
+    background:#f1f5f9;
+    padding:20px;
+}
+
+.product-info{
     padding:25px;
 }
 
-.card-content h3{
-    margin-bottom:10px;
-    color:#4fc3f7;
+.product-info h3{
+    margin-bottom:15px;
+    font-size:24px;
 }
 
-.card-content p{
-    color:#cbd5e1;
-    font-size:14px;
-    line-height:1.7;
+.product-info p{
+    color:#64748b;
+    line-height:1.8;
+}
+
+.price{
+    margin-top:20px;
+    color:#2563eb;
+    font-size:24px;
+    font-weight:800;
 }
 
 /* FEATURES */
 
 .features{
     display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
     gap:25px;
 }
 
 .feature{
-    background:#111827;
-    padding:30px;
-    border-radius:15px;
+    background:white;
+    padding:35px;
+    border-radius:20px;
     text-align:center;
+    box-shadow:0 5px 15px rgba(0,0,0,0.06);
     transition:0.3s;
 }
 
@@ -219,46 +275,53 @@ section{
 }
 
 .feature h3{
-    color:#4fc3f7;
-    margin-bottom:15px;
+    margin:20px 0;
+    color:#2563eb;
 }
 
 /* ABOUT */
 
 .about{
-    background:#111827;
-    border-radius:20px;
-    padding:50px;
+    background:white;
+    padding:60px;
+    border-radius:25px;
     line-height:2;
+    box-shadow:0 5px 20px rgba(0,0,0,0.06);
+}
+
+.about p{
+    color:#475569;
+    font-size:17px;
 }
 
 /* CONTACT */
 
-.contact-box{
-    background:#111827;
-    padding:50px;
-    border-radius:20px;
+.contact{
+    background:#1e293b;
+    color:white;
+    border-radius:25px;
+    padding:60px;
     text-align:center;
 }
 
-.contact-box h2{
-    color:#4fc3f7;
-    margin-bottom:20px;
+.contact h2{
+    font-size:45px;
+    margin-bottom:25px;
 }
 
-.contact-box p{
-    margin-bottom:12px;
+.contact p{
+    margin-bottom:15px;
     color:#cbd5e1;
+    font-size:17px;
 }
 
 /* FOOTER */
 
 footer{
-    background:#020617;
+    background:#0f172a;
+    color:#94a3b8;
     text-align:center;
     padding:25px;
-    margin-top:40px;
-    color:#94a3b8;
 }
 
 /* WHATSAPP */
@@ -268,17 +331,17 @@ footer{
     bottom:25px;
     right:25px;
     background:#25d366;
-    color:white;
-    width:65px;
-    height:65px;
+    width:70px;
+    height:70px;
     border-radius:50%;
     display:flex;
     justify-content:center;
     align-items:center;
-    font-size:32px;
+    color:white;
+    font-size:34px;
     text-decoration:none;
-    box-shadow:0 10px 25px rgba(0,0,0,0.4);
-    z-index:1000;
+    box-shadow:0 10px 25px rgba(0,0,0,0.25);
+    z-index:999;
 }
 
 /* RESPONSIVE */
@@ -286,7 +349,7 @@ footer{
 @media(max-width:768px){
 
 .hero-text h1{
-    font-size:40px;
+    font-size:42px;
 }
 
 nav{
@@ -299,9 +362,18 @@ nav ul{
     justify-content:center;
 }
 
+.section-title{
+    font-size:38px;
+}
+
+.contact h2{
+    font-size:35px;
+}
+
 }
 
 </style>
+
 </head>
 
 <body>
@@ -310,12 +382,14 @@ nav ul{
 
 <nav>
 
-<div class="logo">RCS TECH WORLD</div>
+<div class="logo">
+RCS TECH WORLD
+</div>
 
 <ul>
 <li><a href="#">Home</a></li>
+<li><a href="#categories">Categories</a></li>
 <li><a href="#products">Products</a></li>
-<li><a href="#services">Services</a></li>
 <li><a href="#about">About</a></li>
 <li><a href="#contact">Contact</a></li>
 </ul>
@@ -330,13 +404,13 @@ nav ul{
 
 <h1>
 Premium <span>Refurbished</span><br>
-Business Laptops
+Laptops at Affordable Prices
 </h1>
 
 <p>
-Affordable Dell, HP & Lenovo laptops for students,
-office work, coding, business and professional use.
-Certified refurbished laptops with warranty support.
+Buy certified refurbished Dell, HP, Lenovo and Apple laptops
+for office work, coding, students, online classes and business use.
+Trusted quality with warranty support and affordable pricing.
 </p>
 
 <div class="hero-btns">
@@ -355,7 +429,69 @@ WhatsApp Us
 
 <div class="hero-image">
 
-<img src="https://images.unsplash.com/photo-1496181133206-80ce9b88a853?q=80&w=1200&auto=format&fit=crop" alt="Laptop">
+<img src="https://images.unsplash.com/photo-1496181133206-80ce9b88a853?q=80&w=1200&auto=format&fit=crop">
+
+</div>
+
+</section>
+
+<!-- CATEGORIES -->
+
+<section id="categories">
+
+<h2 class="section-title">
+Buy The Best Refurbished Laptops
+</h2>
+
+<div class="categories">
+
+<div class="category-card">
+
+<img src="https://images.unsplash.com/photo-1517336714739-489689fd1ca8?q=80&w=1200&auto=format&fit=crop">
+
+<div class="overlay">
+
+<h3>Laptops Under ₹20,000</h3>
+
+<p>
+Affordable student and office laptops.
+</p>
+
+</div>
+
+</div>
+
+<div class="category-card">
+
+<img src="https://images.unsplash.com/photo-1515879218367-8466d910aaa4?q=80&w=1200&auto=format&fit=crop">
+
+<div class="overlay">
+
+<h3>Laptops Under ₹30,000</h3>
+
+<p>
+Best business and multitasking laptops.
+</p>
+
+</div>
+
+</div>
+
+<div class="category-card">
+
+<img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=1200&auto=format&fit=crop">
+
+<div class="overlay">
+
+<h3>Premium Business Laptops</h3>
+
+<p>
+High performance laptops for professionals.
+</p>
+
+</div>
+
+</div>
 
 </div>
 
@@ -366,57 +502,87 @@ WhatsApp Us
 <section id="products">
 
 <h2 class="section-title">
-Featured Refurbished Laptops
+Featured Products
 </h2>
 
-<div class="cards">
+<div class="products">
 
-<div class="card">
+<div class="product-card">
 
-<img src="https://images.unsplash.com/photo-1517336714739-489689fd1ca8?q=80&w=1200&auto=format&fit=crop">
+<img src="https://cdn.pixabay.com/photo/2014/05/02/21/50/laptop-336369_1280.jpg">
 
-<div class="card-content">
+<div class="product-info">
 
-<h3>Dell Latitude Series</h3>
-
-<p>
-Best for office work, students and business use.
-Powerful performance with SSD upgrade options.
-</p>
-
-</div>
-
-</div>
-
-<div class="card">
-
-<img src="https://images.unsplash.com/photo-1515879218367-8466d910aaa4?q=80&w=1200&auto=format&fit=crop">
-
-<div class="card-content">
-
-<h3>HP EliteBook</h3>
+<h3>Dell Latitude 5420</h3>
 
 <p>
-Premium business laptops with excellent build quality,
-battery backup and fast performance.
+Intel Core i5 | 16GB RAM | 512GB SSD
+Perfect for office and coding work.
 </p>
 
+<div class="price">
+₹28,999
 </div>
 
 </div>
 
-<div class="card">
+</div>
 
-<img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=1200&auto=format&fit=crop">
+<div class="product-card">
 
-<div class="card-content">
+<img src="https://cdn.pixabay.com/photo/2014/09/27/13/44/notebook-463929_1280.jpg">
 
-<h3>Lenovo ThinkPad</h3>
+<div class="product-info">
+
+<h3>HP EliteBook 840 G5</h3>
 
 <p>
-Professional coding and office laptops trusted
-by developers and companies worldwide.
+Business class laptop with SSD and excellent battery backup.
 </p>
+
+<div class="price">
+₹24,999
+</div>
+
+</div>
+
+</div>
+
+<div class="product-card">
+
+<img src="https://cdn.pixabay.com/photo/2015/01/21/14/14/apple-606761_1280.jpg">
+
+<div class="product-info">
+
+<h3>Lenovo ThinkPad T480</h3>
+
+<p>
+Professional laptop for developers and multitasking users.
+</p>
+
+<div class="price">
+₹26,999
+</div>
+
+</div>
+
+</div>
+
+<div class="product-card">
+
+<img src="https://cdn.pixabay.com/photo/2016/11/29/06/15/laptop-1867758_1280.jpg">
+
+<div class="product-info">
+
+<h3>Dell Precision Series</h3>
+
+<p>
+Workstation laptop for graphic design and editing work.
+</p>
+
+<div class="price">
+₹39,999
+</div>
 
 </div>
 
@@ -428,32 +594,32 @@ by developers and companies worldwide.
 
 <!-- FEATURES -->
 
-<section id="services">
+<section>
 
 <h2 class="section-title">
-Why Choose Us
+Why Choose RCS TECH WORLD
 </h2>
 
 <div class="features">
 
 <div class="feature">
 <h3>Certified Refurbished</h3>
-<p>Fully tested and quality checked laptops.</p>
+<p>Professionally tested and quality checked devices.</p>
 </div>
 
 <div class="feature">
 <h3>Warranty Support</h3>
-<p>Warranty available on selected laptops.</p>
+<p>Warranty available on selected laptop models.</p>
 </div>
 
 <div class="feature">
 <h3>Affordable Pricing</h3>
-<p>Premium business laptops at budget prices.</p>
+<p>Premium business laptops at lower prices.</p>
 </div>
 
 <div class="feature">
-<h3>SSD Upgrades</h3>
-<p>Fast SSD and RAM upgrade support available.</p>
+<h3>SSD & RAM Upgrades</h3>
+<p>Fast upgrade support available.</p>
 </div>
 
 <div class="feature">
@@ -463,7 +629,7 @@ Why Choose Us
 
 <div class="feature">
 <h3>Repair Services</h3>
-<p>Laptop repair, servicing and maintenance support.</p>
+<p>Laptop servicing and maintenance support.</p>
 </div>
 
 </div>
@@ -481,30 +647,29 @@ About RCS TECH WORLD
 <div class="about">
 
 <p>
-RCS TECH WORLD is a trusted refurbished laptop and IT solutions provider
-based in Uttam Nagar, New Delhi.
+In today’s fast-growing digital world, laptops and desktops are no longer luxury products — they are essential for students, professionals, businesses and online learning.
+However, the high price of brand-new devices often makes technology difficult to afford for many users.
 </p>
 
 <br>
 
 <p>
-We deal in certified refurbished laptops, desktops, accessories,
-software installation, repair services and bulk corporate requirements.
+RCS TECH WORLD provides high-quality certified refurbished laptops and desktops at affordable prices.
+We help customers access premium technology without spending huge amounts on new electronics.
 </p>
 
 <br>
 
 <p>
-We specialize in Dell Latitude, HP EliteBook,
-Lenovo ThinkPad and professional business laptops
-at affordable prices.
+Whether you need a laptop for office work, coding, online classes, business use, graphic designing or daily usage,
+we offer reliable refurbished systems from top brands like Dell, HP, Lenovo and Apple.
 </p>
 
 <br>
 
 <p>
-We are connected with leading technology distribution ecosystems
-and focus on delivering quality products with customer trust.
+Every laptop is professionally tested, quality checked and optimized for performance.
+Our goal is to deliver affordable, reliable and business-grade technology solutions with customer satisfaction and long-term trust.
 </p>
 
 </div>
@@ -515,13 +680,15 @@ and focus on delivering quality products with customer trust.
 
 <section id="contact">
 
-<h2 class="section-title">
+<div class="contact">
+
+<h2>
 Contact Us
 </h2>
 
-<div class="contact-box">
-
-<h2>RCS TECH WORLD</h2>
+<p>
+RCS TECH WORLD
+</p>
 
 <p>
 RZ-2, Vipin Garden,<br>
@@ -538,8 +705,10 @@ Uttam Nagar, New Delhi - 110059
 </p>
 
 <p>
-🕒 Mon - Sat : 10AM to 8PM
+🕒 Monday - Saturday : 10AM - 8PM
 </p>
+
+<br>
 
 <a href="https://wa.me/918168411895" class="btn primary">
 Chat on WhatsApp
@@ -564,4 +733,5 @@ Chat on WhatsApp
 </a>
 
 </body>
+
 </html>
