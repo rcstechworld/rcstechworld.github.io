@@ -6,13 +6,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>RCS TECH WORLD | Refurbished Laptops & Desktops</title>
+<title>RCS TECH WORLD | New & Refurbished Laptops</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-
-<!-- PAPAPARSE -->
 
 <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
 
@@ -48,7 +46,7 @@ nav{
 }
 
 .logo{
-    font-size:30px;
+    font-size:32px;
     font-weight:800;
     color:#2563eb;
 }
@@ -321,36 +319,6 @@ section{
     margin-bottom:15px;
 }
 
-.warranty-grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-    gap:25px;
-}
-
-.warranty-card{
-    background:#f8fafc;
-    padding:30px;
-    border-radius:18px;
-    border:1px solid #e2e8f0;
-}
-
-.warranty-card h4{
-    color:#2563eb;
-    margin-bottom:15px;
-}
-
-.warranty-note{
-    margin-top:40px;
-    background:#eff6ff;
-    padding:30px;
-    border-radius:20px;
-}
-
-.warranty-note ul{
-    padding-left:20px;
-    line-height:2;
-}
-
 /* CONTACT */
 
 .contact{
@@ -468,14 +436,14 @@ RCS TECH WORLD
 <div class="hero-text">
 
 <h1>
-Premium <span>Refurbished</span><br>
+Premium <span>New & Refurbished</span><br>
 Laptops & Desktops
 </h1>
 
 <p>
-Buy certified refurbished Dell, HP, Lenovo and Apple laptops & desktops
-for office work, coding, students, online classes and business use.
-Trusted quality with warranty support and affordable pricing.
+Buy premium new and refurbished Dell, HP, Lenovo, Apple laptops,
+desktops and accessories at affordable prices for students,
+businesses and professionals.
 </p>
 
 <div class="hero-btns">
@@ -533,8 +501,8 @@ Why Choose RCS TECH WORLD
 <div class="features">
 
 <div class="feature">
-<h3>Certified Refurbished</h3>
-<p>Professionally tested and quality checked devices.</p>
+<h3>New & Refurbished Devices</h3>
+<p>Professionally tested and quality checked systems.</p>
 </div>
 
 <div class="feature">
@@ -544,7 +512,7 @@ Why Choose RCS TECH WORLD
 
 <div class="feature">
 <h3>Affordable Pricing</h3>
-<p>Business-class laptops at affordable prices.</p>
+<p>Best pricing for business and personal use.</p>
 </div>
 
 <div class="feature">
@@ -577,19 +545,22 @@ About RCS TECH WORLD
 <div class="about">
 
 <p>
-RCS TECH WORLD provides high-quality certified refurbished laptops and desktops at affordable prices.
+RCS TECH WORLD provides high-quality new and refurbished laptops,
+desktops and accessories at affordable prices for students,
+professionals, offices and businesses.
 </p>
 
 <br>
 
 <p>
-We specialize in Dell Latitude, HP EliteBook, Lenovo ThinkPad and professional business systems with warranty support.
+We specialize in Dell Latitude, HP EliteBook, Lenovo ThinkPad,
+gaming systems and professional business devices.
 </p>
 
 <br>
 
 <p>
-Every system is professionally tested and optimized for performance before delivery.
+Every system is professionally tested and optimized before delivery.
 </p>
 
 </div>
@@ -613,48 +584,8 @@ Warranty Protection
 </h3>
 
 <p>
-Every refurbished product is professionally tested and quality checked before delivery.
+Warranty and support available on selected products.
 </p>
-
-</div>
-
-<div class="warranty-grid">
-
-<div class="warranty-card">
-<h4>✔ Battery & Adapter Covered</h4>
-<p>Battery and adapter support included.</p>
-</div>
-
-<div class="warranty-card">
-<h4>✔ Replacement Support</h4>
-<p>Equivalent replacement support available.</p>
-</div>
-
-<div class="warranty-card">
-<h4>✔ Pan India Support</h4>
-<p>Support available across India.</p>
-</div>
-
-<div class="warranty-card">
-<h4>✔ Professional Testing</h4>
-<p>All systems are quality checked before delivery.</p>
-</div>
-
-</div>
-
-<div class="warranty-note">
-
-<ul>
-
-<li>Warranty terms vary product to product.</li>
-
-<li>Warranty does not cover accidental or liquid damage.</li>
-
-<li>No warranty for software issues or data loss.</li>
-
-<li>Customer should maintain backup before repair.</li>
-
-</ul>
 
 </div>
 
@@ -686,7 +617,7 @@ Dwarka More, New Delhi - 110059
 </p>
 
 <p>
-🕒 Monday - Saturday : 10AM - 8PM
+🕒 Monday - Sunday : 10AM - 9PM
 </p>
 
 <br>
@@ -703,7 +634,7 @@ Chat on WhatsApp
 
 <footer>
 
-© 2019 RCS TECH WORLD | Refurbished Laptop & Desktop Store
+© 2019 RCS TECH WORLD | New & Refurbished Laptop Store
 
 </footer>
 
@@ -744,6 +675,7 @@ async function loadProducts(){
 
                     allProducts.push({
 
+                        condition: product.Condition || "Refurbished",
                         category: product.Category || "",
                         brand: product.Brand || "",
                         model: product.Model || "",
@@ -767,9 +699,7 @@ async function loadProducts(){
 
                         cpu: product["CPU Speed"] || "1.80 GHz",
 
-                        stock: product.Stock ||
-
-                        "Only Few Left"
+                        stock: product.Stock || "Only Few Left"
 
                     });
 
@@ -802,7 +732,8 @@ function displayProducts(products){
 
                 <h3>
 
-                Refurbished ${product.brand}
+                ${product.condition}
+                ${product.brand}
                 ${product.model}
 
                 </h3>
@@ -822,28 +753,8 @@ function displayProducts(products){
                 <table class="spec-table">
 
                     <tr>
-                        <td>SKU</td>
-                        <td>${product.sku}</td>
-                    </tr>
-
-                    <tr>
-                        <td>Brand</td>
-                        <td>${product.brand}</td>
-                    </tr>
-
-                    <tr>
-                        <td>Category</td>
-                        <td>${product.category}</td>
-                    </tr>
-
-                    <tr>
                         <td>Processor</td>
                         <td>${product.processor}</td>
-                    </tr>
-
-                    <tr>
-                        <td>CPU Speed</td>
-                        <td>${product.cpu}</td>
                     </tr>
 
                     <tr>
@@ -862,18 +773,8 @@ function displayProducts(products){
                     </tr>
 
                     <tr>
-                        <td>Touch Screen</td>
-                        <td>${product.touch}</td>
-                    </tr>
-
-                    <tr>
-                        <td>Operating System</td>
+                        <td>OS</td>
                         <td>${product.os}</td>
-                    </tr>
-
-                    <tr>
-                        <td>Webcam</td>
-                        <td>${product.webcam}</td>
                     </tr>
 
                 </table>
@@ -917,7 +818,8 @@ document.getElementById("searchInput").addEventListener("keyup", function(){
         product.brand.toLowerCase().includes(value) ||
         product.model.toLowerCase().includes(value) ||
         product.processor.toLowerCase().includes(value) ||
-        product.category.toLowerCase().includes(value)
+        product.category.toLowerCase().includes(value) ||
+        product.condition.toLowerCase().includes(value)
 
     );
 
