@@ -8,12 +8,11 @@
 
 <title>RCS TECH WORLD | Refurbished Laptops & Desktops</title>
 
-<link rel="icon"
-href="https://rcstechworld.github.io/images/logo.png">
-
 <link rel="preconnect" href="https://fonts.googleapis.com">
 
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<!-- PAPAPARSE -->
 
 <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
 
@@ -33,40 +32,25 @@ body{
     overflow-x:hidden;
 }
 
-/* TOP BAR */
-
-.top-bar{
-    background:#020617;
-    color:white;
-    padding:12px 8%;
-    display:flex;
-    justify-content:space-between;
-    flex-wrap:wrap;
-    gap:15px;
-    font-size:14px;
-}
-
 /* NAVBAR */
 
 nav{
     width:100%;
-    position:sticky;
-    top:0;
-    z-index:1000;
     background:white;
-    box-shadow:0 2px 15px rgba(0,0,0,0.08);
-}
-
-.navbar{
     display:flex;
     justify-content:space-between;
     align-items:center;
-    padding:18px 8%;
+    padding:20px 8%;
+    position:sticky;
+    top:0;
+    z-index:1000;
+    box-shadow:0 2px 15px rgba(0,0,0,0.08);
 }
 
-.logo img{
-    height:90px;
-    object-fit:contain;
+.logo{
+    font-size:30px;
+    font-weight:800;
+    color:#2563eb;
 }
 
 nav ul{
@@ -78,43 +62,12 @@ nav ul{
 nav ul li a{
     text-decoration:none;
     color:#111827;
-    font-weight:700;
+    font-weight:600;
     transition:0.3s;
 }
 
 nav ul li a:hover{
     color:#2563eb;
-}
-
-/* BUTTON */
-
-.btn{
-    padding:15px 35px;
-    border-radius:10px;
-    text-decoration:none;
-    font-weight:700;
-    transition:0.3s;
-    display:inline-block;
-}
-
-.primary{
-    background:#2563eb;
-    color:white;
-}
-
-.primary:hover{
-    background:#1d4ed8;
-    transform:translateY(-4px);
-}
-
-.secondary{
-    border:2px solid #2563eb;
-    color:#2563eb;
-}
-
-.secondary:hover{
-    background:#2563eb;
-    color:white;
 }
 
 /* HERO */
@@ -136,7 +89,7 @@ nav ul li a:hover{
 }
 
 .hero-text h1{
-    font-size:68px;
+    font-size:65px;
     line-height:1.2;
     margin-bottom:25px;
     font-weight:800;
@@ -147,7 +100,7 @@ nav ul li a:hover{
 }
 
 .hero-text p{
-    font-size:20px;
+    font-size:19px;
     line-height:1.9;
     color:#475569;
     margin-bottom:35px;
@@ -159,6 +112,35 @@ nav ul li a:hover{
     flex-wrap:wrap;
 }
 
+.btn{
+    padding:15px 35px;
+    border-radius:10px;
+    text-decoration:none;
+    font-weight:700;
+    transition:0.3s;
+    display:inline-block;
+}
+
+.primary{
+    background:#2563eb;
+    color:white;
+}
+
+.primary:hover{
+    transform:translateY(-4px);
+    background:#1d4ed8;
+}
+
+.secondary{
+    border:2px solid #2563eb;
+    color:#2563eb;
+}
+
+.secondary:hover{
+    background:#2563eb;
+    color:white;
+}
+
 .hero-image{
     flex:1;
     min-width:300px;
@@ -167,6 +149,7 @@ nav ul li a:hover{
 .hero-image img{
     width:100%;
     border-radius:25px;
+    box-shadow:0 20px 40px rgba(0,0,0,0.15);
 }
 
 /* SECTION */
@@ -176,10 +159,10 @@ section{
 }
 
 .section-title{
-    font-size:52px;
+    font-size:50px;
     margin-bottom:60px;
-    text-align:center;
     font-weight:800;
+    text-align:center;
 }
 
 /* SEARCH */
@@ -191,12 +174,12 @@ section{
 
 .search-box input{
     width:100%;
-    max-width:600px;
+    max-width:550px;
     padding:18px;
     border-radius:12px;
     border:1px solid #cbd5e1;
-    outline:none;
     font-size:16px;
+    outline:none;
 }
 
 /* PRODUCTS */
@@ -356,6 +339,18 @@ section{
     margin-bottom:15px;
 }
 
+.warranty-note{
+    margin-top:40px;
+    background:#eff6ff;
+    padding:30px;
+    border-radius:20px;
+}
+
+.warranty-note ul{
+    padding-left:20px;
+    line-height:2;
+}
+
 /* CONTACT */
 
 .contact{
@@ -410,14 +405,13 @@ footer{
 
 @media(max-width:768px){
 
-.top-bar{
-    flex-direction:column;
-    text-align:center;
+.hero-text h1{
+    font-size:42px;
 }
 
-.navbar{
+nav{
     flex-direction:column;
-    gap:25px;
+    gap:20px;
 }
 
 nav ul{
@@ -425,20 +419,20 @@ nav ul{
     justify-content:center;
 }
 
-.hero{
-    text-align:center;
-}
-
-.hero-text h1{
-    font-size:42px;
+.section-title{
+    font-size:38px;
 }
 
 .products{
     grid-template-columns:1fr;
 }
 
-.section-title{
-    font-size:38px;
+.product-info h3{
+    font-size:24px;
+}
+
+.price{
+    font-size:32px;
 }
 
 }
@@ -453,53 +447,17 @@ nav ul{
 
 <nav>
 
-<div class="top-bar">
-
-<div>
-📞 +91 8168411895
-</div>
-
-<div>
-✉ rcstechworld@gmail.com
-</div>
-
-<div>
-📍 RZ-2 Vipin Garden, Uttam Nagar, New Delhi
-</div>
-
-</div>
-
-<div class="navbar">
-
 <div class="logo">
-
-<img src="https://rcstechworld.github.io/images/logo.png"
-alt="RCS TECH WORLD">
-
+RCS TECH WORLD
 </div>
 
 <ul>
-
 <li><a href="#">Home</a></li>
-
 <li><a href="#products">Products</a></li>
-
-<li><a href="#about">About Us</a></li>
-
+<li><a href="#about">About</a></li>
 <li><a href="#warranty">Warranty</a></li>
-
 <li><a href="#contact">Contact</a></li>
-
 </ul>
-
-<a href="https://wa.me/918168411895"
-class="btn primary">
-
-WhatsApp Us
-
-</a>
-
-</div>
 
 </nav>
 
@@ -509,40 +467,25 @@ WhatsApp Us
 
 <div class="hero-text">
 
-<img src="https://rcstechworld.github.io/images/logo.png"
-
-style="width:220px;
-margin-bottom:20px;">
-
 <h1>
-
-Laptops & Desktops<br>
-
-<span>For Every Need</span>
-
+Premium <span>Refurbished</span><br>
+Laptops & Desktops
 </h1>
 
 <p>
-
-Certified refurbished Dell, HP, Lenovo & more for Office,
-Business, Students, Coding, Online Classes & Personal Use.
-
+Buy certified refurbished Dell, HP, Lenovo and Apple laptops & desktops
+for office work, coding, students, online classes and business use.
+Trusted quality with warranty support and affordable pricing.
 </p>
 
 <div class="hero-btns">
 
 <a href="#products" class="btn primary">
-
 Shop Now
-
 </a>
 
-<a href="https://wa.me/918168411895"
-
-class="btn secondary">
-
+<a href="https://wa.me/918168411895" class="btn secondary">
 WhatsApp Us
-
 </a>
 
 </div>
@@ -562,17 +505,14 @@ WhatsApp Us
 <section id="products">
 
 <h2 class="section-title">
-
-Our Best Sellers
-
+Featured Products
 </h2>
 
 <div class="search-box">
 
 <input type="text"
 id="searchInput"
-
-placeholder="Search Dell, HP, Lenovo, Laptop, Desktop...">
+placeholder="Search Dell, HP, Lenovo, Laptop, Desktop">
 
 </div>
 
@@ -587,71 +527,39 @@ placeholder="Search Dell, HP, Lenovo, Laptop, Desktop...">
 <section>
 
 <h2 class="section-title">
-
 Why Choose RCS TECH WORLD
-
 </h2>
 
 <div class="features">
 
 <div class="feature">
-
 <h3>Certified Refurbished</h3>
-
-<p>
-Professionally tested and quality checked devices.
-</p>
-
+<p>Professionally tested and quality checked devices.</p>
 </div>
 
 <div class="feature">
-
 <h3>3 Years Warranty</h3>
-
-<p>
-Trusted warranty support for customers.
-</p>
-
+<p>Trusted warranty support for customers.</p>
 </div>
 
 <div class="feature">
-
 <h3>Affordable Pricing</h3>
-
-<p>
-Business-class laptops at affordable prices.
-</p>
-
+<p>Business-class laptops at affordable prices.</p>
 </div>
 
 <div class="feature">
-
 <h3>Bulk Orders</h3>
-
-<p>
-Corporate and institutional supply available.
-</p>
-
+<p>Corporate and institutional supply available.</p>
 </div>
 
 <div class="feature">
-
 <h3>Repair Services</h3>
-
-<p>
-Laptop servicing and maintenance support.
-</p>
-
+<p>Laptop servicing and maintenance support.</p>
 </div>
 
 <div class="feature">
-
 <h3>Pan India Support</h3>
-
-<p>
-Support and delivery across India.
-</p>
-
+<p>Support and delivery across India.</p>
 </div>
 
 </div>
@@ -663,36 +571,25 @@ Support and delivery across India.
 <section id="about">
 
 <h2 class="section-title">
-
 About RCS TECH WORLD
-
 </h2>
 
 <div class="about">
 
 <p>
-
-RCS TECH WORLD provides high-quality certified refurbished
-laptops and desktops at affordable prices.
-
+RCS TECH WORLD provides high-quality certified refurbished laptops and desktops at affordable prices.
 </p>
 
 <br>
 
 <p>
-
-We specialize in Dell Latitude, HP EliteBook, Lenovo ThinkPad
-and professional business systems with warranty support.
-
+We specialize in Dell Latitude, HP EliteBook, Lenovo ThinkPad and professional business systems with warranty support.
 </p>
 
 <br>
 
 <p>
-
-Every system is professionally tested and optimized for
-performance before delivery.
-
+Every system is professionally tested and optimized for performance before delivery.
 </p>
 
 </div>
@@ -704,9 +601,7 @@ performance before delivery.
 <section id="warranty">
 
 <h2 class="section-title">
-
 3 Years Warranty Protection
-
 </h2>
 
 <div class="warranty-box">
@@ -714,16 +609,11 @@ performance before delivery.
 <div class="warranty-highlight">
 
 <h3>
-
 🛡 Trusted Warranty Support
-
 </h3>
 
 <p>
-
-Every refurbished product is professionally tested and
-quality checked before delivery.
-
+Every refurbished product is professionally tested and quality checked before delivery.
 </p>
 
 </div>
@@ -731,36 +621,38 @@ quality checked before delivery.
 <div class="warranty-grid">
 
 <div class="warranty-card">
-
 <h4>✔ 3 Years Warranty</h4>
-
 <p>Warranty starts from purchase date.</p>
-
 </div>
 
 <div class="warranty-card">
-
 <h4>✔ Battery & Adapter Covered</h4>
-
 <p>Battery and adapter support included.</p>
-
 </div>
 
 <div class="warranty-card">
-
 <h4>✔ Replacement Support</h4>
-
 <p>Equivalent replacement support available.</p>
-
 </div>
 
 <div class="warranty-card">
-
 <h4>✔ Pan India Support</h4>
-
 <p>Support available across India.</p>
+</div>
 
 </div>
+
+<div class="warranty-note">
+
+<ul>
+
+<li>Warranty does not cover accidental or liquid damage.</li>
+
+<li>No warranty for software issues or data loss.</li>
+
+<li>Customer should maintain backup before repair.</li>
+
+</ul>
 
 </div>
 
@@ -775,45 +667,31 @@ quality checked before delivery.
 <div class="contact">
 
 <h2>
-
 Contact Us
-
 </h2>
 
 <p>
-
 RCS TECH WORLD
-
 </p>
 
 <p>
-
 RZ-2, Vipin Garden,<br>
 Near Fakkad Baba Mandir,<br>
 Uttam Nagar, New Delhi - 110059
-
 </p>
 
 <p>
-
 📞 +91 8168411895
-
 </p>
 
 <p>
-
 🕒 Monday - Saturday : 10AM - 8PM
-
 </p>
 
 <br>
 
-<a href="https://wa.me/918168411895"
-
-class="btn primary">
-
+<a href="https://wa.me/918168411895" class="btn primary">
 Chat on WhatsApp
-
 </a>
 
 </div>
@@ -824,19 +702,14 @@ Chat on WhatsApp
 
 <footer>
 
-© 2019 RCS TECH WORLD |
-Refurbished Laptop & Desktop Store
+© 2019 RCS TECH WORLD | Refurbished Laptop & Desktop Store
 
 </footer>
 
 <!-- WHATSAPP -->
 
-<a href="https://wa.me/918168411895"
-
-class="whatsapp">
-
+<a href="https://wa.me/918168411895" class="whatsapp">
 ☎
-
 </a>
 
 <!-- SCRIPT -->
@@ -930,7 +803,7 @@ function displayProducts(products){
 
                 <h3>
 
-                ${product.brand}
+                Refurbished ${product.brand}
                 ${product.model}
 
                 </h3>
@@ -950,8 +823,28 @@ function displayProducts(products){
                 <table class="spec-table">
 
                     <tr>
+                        <td>SKU</td>
+                        <td>${product.sku}</td>
+                    </tr>
+
+                    <tr>
+                        <td>Brand</td>
+                        <td>${product.brand}</td>
+                    </tr>
+
+                    <tr>
+                        <td>Category</td>
+                        <td>${product.category}</td>
+                    </tr>
+
+                    <tr>
                         <td>Processor</td>
                         <td>${product.processor}</td>
+                    </tr>
+
+                    <tr>
+                        <td>CPU Speed</td>
+                        <td>${product.cpu}</td>
                     </tr>
 
                     <tr>
@@ -970,8 +863,18 @@ function displayProducts(products){
                     </tr>
 
                     <tr>
-                        <td>OS</td>
+                        <td>Touch Screen</td>
+                        <td>${product.touch}</td>
+                    </tr>
+
+                    <tr>
+                        <td>Operating System</td>
                         <td>${product.os}</td>
+                    </tr>
+
+                    <tr>
+                        <td>Webcam</td>
+                        <td>${product.webcam}</td>
                     </tr>
 
                 </table>
