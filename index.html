@@ -538,7 +538,7 @@ Why Choose RCS TECH WORLD
 </div>
 
 <div class="feature">
-<h3>3 Years Warranty</h3>
+<h3>Warranty Support</h3>
 <p>Trusted warranty support for customers.</p>
 </div>
 
@@ -601,7 +601,7 @@ Every system is professionally tested and optimized for performance before deliv
 <section id="warranty">
 
 <h2 class="section-title">
-3 Years Warranty Protection
+Warranty Protection
 </h2>
 
 <div class="warranty-box">
@@ -621,11 +621,6 @@ Every refurbished product is professionally tested and quality checked before de
 <div class="warranty-grid">
 
 <div class="warranty-card">
-<h4>✔ 3 Years Warranty</h4>
-<p>Warranty starts from purchase date.</p>
-</div>
-
-<div class="warranty-card">
 <h4>✔ Battery & Adapter Covered</h4>
 <p>Battery and adapter support included.</p>
 </div>
@@ -640,11 +635,18 @@ Every refurbished product is professionally tested and quality checked before de
 <p>Support available across India.</p>
 </div>
 
+<div class="warranty-card">
+<h4>✔ Professional Testing</h4>
+<p>All systems are quality checked before delivery.</p>
+</div>
+
 </div>
 
 <div class="warranty-note">
 
 <ul>
+
+<li>Warranty terms vary product to product.</li>
 
 <li>Warranty does not cover accidental or liquid damage.</li>
 
@@ -675,9 +677,8 @@ RCS TECH WORLD
 </p>
 
 <p>
-RZ-2, Vipin Garden,<br>
-Near Fakkad Baba Mandir,<br>
-Uttam Nagar, New Delhi - 110059
+RR-2, Vipin Garden,<br>
+Dwarka More, New Delhi - 110059
 </p>
 
 <p>
@@ -762,9 +763,7 @@ async function loadProducts(){
 
                         webcam: product.Webcam || "Yes",
 
-                        warranty: product.Warranty ||
-
-                        "3 Years Warranty",
+                        warranty: product.Warranty || "",
 
                         cpu: product["CPU Speed"] || "1.80 GHz",
 
@@ -881,7 +880,7 @@ function displayProducts(products){
 
                 <ul class="feature-list">
 
-                    <li>${product.warranty}</li>
+                    ${product.warranty ? `<li>${product.warranty}</li>` : ""}
 
                     <li>Battery & Adapter Covered</li>
 
