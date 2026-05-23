@@ -114,6 +114,7 @@ nav ul li a:hover{
     text-decoration:none;
     font-weight:700;
     transition:0.3s;
+    display:inline-block;
 }
 
 .primary{
@@ -158,6 +159,23 @@ section{
     margin-bottom:60px;
     font-weight:800;
     text-align:center;
+}
+
+/* SEARCH */
+
+.search-box{
+    text-align:center;
+    margin-bottom:50px;
+}
+
+.search-box input{
+    width:100%;
+    max-width:500px;
+    padding:18px;
+    border-radius:12px;
+    border:1px solid #cbd5e1;
+    font-size:16px;
+    outline:none;
 }
 
 /* CATEGORIES */
@@ -208,7 +226,7 @@ section{
 
 .products{
     display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
     gap:30px;
 }
 
@@ -239,6 +257,7 @@ section{
 .product-info h3{
     margin-bottom:15px;
     font-size:24px;
+    min-height:60px;
 }
 
 .product-info p{
@@ -249,7 +268,7 @@ section{
 .price{
     margin-top:20px;
     color:#2563eb;
-    font-size:24px;
+    font-size:28px;
     font-weight:800;
 }
 
@@ -292,6 +311,86 @@ section{
 .about p{
     color:#475569;
     font-size:17px;
+}
+
+/* WARRANTY */
+
+.warranty-box{
+    background:white;
+    border-radius:25px;
+    padding:60px;
+    box-shadow:0 5px 20px rgba(0,0,0,0.08);
+}
+
+.warranty-highlight{
+    background:linear-gradient(135deg,#2563eb,#1d4ed8);
+    color:white;
+    padding:40px;
+    border-radius:20px;
+    margin-bottom:40px;
+    text-align:center;
+}
+
+.warranty-highlight h3{
+    font-size:36px;
+    margin-bottom:15px;
+}
+
+.warranty-highlight p{
+    font-size:18px;
+    line-height:1.8;
+}
+
+.warranty-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:25px;
+}
+
+.warranty-card{
+    background:#f8fafc;
+    padding:30px;
+    border-radius:18px;
+    transition:0.3s;
+    border:1px solid #e2e8f0;
+}
+
+.warranty-card:hover{
+    transform:translateY(-8px);
+    box-shadow:0 10px 25px rgba(37,99,235,0.15);
+}
+
+.warranty-card h4{
+    color:#2563eb;
+    margin-bottom:15px;
+    font-size:22px;
+}
+
+.warranty-card p{
+    color:#475569;
+    line-height:1.8;
+}
+
+.warranty-note{
+    margin-top:50px;
+    background:#eff6ff;
+    padding:35px;
+    border-radius:20px;
+}
+
+.warranty-note h3{
+    margin-bottom:20px;
+    color:#1d4ed8;
+}
+
+.warranty-note ul{
+    padding-left:20px;
+}
+
+.warranty-note li{
+    margin-bottom:15px;
+    color:#334155;
+    line-height:1.8;
 }
 
 /* CONTACT */
@@ -505,88 +604,15 @@ High performance laptops for professionals.
 Featured Products
 </h2>
 
-<div class="products">
+<div class="search-box">
 
-<div class="product-card">
-
-<img src="https://cdn.pixabay.com/photo/2014/05/02/21/50/laptop-336369_1280.jpg">
-
-<div class="product-info">
-
-<h3>Dell Latitude 5420</h3>
-
-<p>
-Intel Core i5 | 16GB RAM | 512GB SSD
-Perfect for office and coding work.
-</p>
-
-<div class="price">
-₹28,999
-</div>
+<input type="text"
+id="searchInput"
+placeholder="Search Laptop Brand, Model or Processor">
 
 </div>
 
-</div>
-
-<div class="product-card">
-
-<img src="https://cdn.pixabay.com/photo/2014/09/27/13/44/notebook-463929_1280.jpg">
-
-<div class="product-info">
-
-<h3>HP EliteBook 840 G5</h3>
-
-<p>
-Business class laptop with SSD and excellent battery backup.
-</p>
-
-<div class="price">
-₹24,999
-</div>
-
-</div>
-
-</div>
-
-<div class="product-card">
-
-<img src="https://cdn.pixabay.com/photo/2015/01/21/14/14/apple-606761_1280.jpg">
-
-<div class="product-info">
-
-<h3>Lenovo ThinkPad T480</h3>
-
-<p>
-Professional laptop for developers and multitasking users.
-</p>
-
-<div class="price">
-₹26,999
-</div>
-
-</div>
-
-</div>
-
-<div class="product-card">
-
-<img src="https://cdn.pixabay.com/photo/2016/11/29/06/15/laptop-1867758_1280.jpg">
-
-<div class="product-info">
-
-<h3>Dell Precision Series</h3>
-
-<p>
-Workstation laptop for graphic design and editing work.
-</p>
-
-<div class="price">
-₹39,999
-</div>
-
-</div>
-
-</div>
+<div class="products" id="product-list">
 
 </div>
 
@@ -676,6 +702,106 @@ Our goal is to deliver affordable, reliable and business-grade technology soluti
 
 </section>
 
+<!-- WARRANTY -->
+
+<section id="warranty">
+
+<h2 class="section-title">
+3 Years Warranty Protection
+</h2>
+
+<div class="warranty-box">
+
+<div class="warranty-highlight">
+
+<h3>
+🛡 Trusted Warranty Support
+</h3>
+
+<p>
+Every refurbished laptop is professionally tested and comes with warranty support for customer peace of mind.
+</p>
+
+</div>
+
+<div class="warranty-grid">
+
+<div class="warranty-card">
+<h4>✔ 3 Years Warranty</h4>
+<p>
+Warranty starts from the date of purchase.
+</p>
+</div>
+
+<div class="warranty-card">
+<h4>✔ Replacement Support</h4>
+<p>
+Equivalent or higher generation replacement support available.
+</p>
+</div>
+
+<div class="warranty-card">
+<h4>✔ Battery & Adapter Covered</h4>
+<p>
+Warranty includes battery and adapter support.
+</p>
+</div>
+
+<div class="warranty-card">
+<h4>✔ Hardware Coverage</h4>
+<p>
+Warranty valid for hardware-related manufacturing defects.
+</p>
+</div>
+
+<div class="warranty-card">
+<h4>✔ Customer Assistance</h4>
+<p>
+Quick support process with dedicated customer assistance.
+</p>
+</div>
+
+<div class="warranty-card">
+<h4>✔ Trusted Business Laptops</h4>
+<p>
+Professionally tested Dell, HP and Lenovo business-class laptops.
+</p>
+</div>
+
+</div>
+
+<div class="warranty-note">
+
+<h3>
+Important Warranty Notes
+</h3>
+
+<ul>
+
+<li>
+Warranty does not cover accidental damage, liquid damage or misuse.
+</li>
+
+<li>
+Warranty seal should not be tampered with.
+</li>
+
+<li>
+No warranty for software issues, viruses or data loss.
+</li>
+
+<li>
+Customer should keep data backup before repair submission.
+</li>
+
+</ul>
+
+</div>
+
+</div>
+
+</section>
+
 <!-- CONTACT -->
 
 <section id="contact">
@@ -731,6 +857,121 @@ Chat on WhatsApp
 <a href="https://wa.me/918168411895" class="whatsapp">
 ☎
 </a>
+
+<!-- SCRIPT -->
+
+<script>
+
+const sheetURL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTIHC0Ww4wCdi7Tx5Xqhye4ljZ5nsM849ghAxvdNMr2Fp3iV5pcO6HGA1oQeePNx4mJd8KALMIyrglx/pub?output=csv";
+
+let allProducts = [];
+
+async function loadProducts(){
+
+    const response = await fetch(sheetURL);
+    const data = await response.text();
+
+    const rows = data.split("\n").slice(1);
+
+    allProducts = [];
+
+    rows.forEach(row => {
+
+        const cols = row.split(",");
+
+        if(cols.length > 9){
+
+            allProducts.push({
+
+                brand: cols[2],
+                model: cols[3],
+                processor: cols[4],
+                ram: cols[5],
+                ssd: cols[6],
+                screen: cols[7],
+                price: cols[9]
+
+            });
+
+        }
+
+    });
+
+    displayProducts(allProducts);
+
+}
+
+function displayProducts(products){
+
+    let html = "";
+
+    products.forEach(product => {
+
+        html += `
+
+        <div class="product-card">
+
+            <img src="https://cdn.pixabay.com/photo/2014/05/02/21/50/laptop-336369_1280.jpg">
+
+            <div class="product-info">
+
+                <h3>
+                    ${product.brand} ${product.model}
+                </h3>
+
+                <p>
+
+                    ${product.processor}<br>
+                    ${product.ram} RAM<br>
+                    ${product.ssd}<br>
+                    ${product.screen}
+
+                </p>
+
+                <div class="price">
+                    ₹${product.price}
+                </div>
+
+                <br>
+
+                <a href="https://wa.me/918168411895"
+                class="btn primary">
+
+                Enquire Now
+
+                </a>
+
+            </div>
+
+        </div>
+
+        `;
+
+    });
+
+    document.getElementById("product-list").innerHTML = html;
+
+}
+
+document.getElementById("searchInput").addEventListener("keyup", function(){
+
+    const value = this.value.toLowerCase();
+
+    const filtered = allProducts.filter(product =>
+
+        product.brand.toLowerCase().includes(value) ||
+        product.model.toLowerCase().includes(value) ||
+        product.processor.toLowerCase().includes(value)
+
+    );
+
+    displayProducts(filtered);
+
+});
+
+loadProducts();
+
+</script>
 
 </body>
 
