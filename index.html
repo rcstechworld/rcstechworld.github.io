@@ -14,7 +14,7 @@ RCS TECH WORLD | Premium Refurbished & New Laptops
 content="Buy premium refurbished and new laptops, desktops and accessories from RCS TECH WORLD Delhi with warranty and pan India support.">
 
 <meta name="keywords"
-content="Refurbished laptops Delhi, Used laptops Uttam Nagar, Dell laptops, HP laptops, Lenovo laptops">
+content="Refurbished laptops Delhi, Used laptops Uttam Nagar, Dell laptops, HP laptops, Lenovo laptops, Business laptops">
 
 <meta name="robots"
 content="index, follow">
@@ -325,24 +325,6 @@ padding-left:20px;
 line-height:2;
 margin-bottom:25px;
 color:#475569;
-}
-
-/* WARRANTY BADGE */
-
-@keyframes pulse{
-
-0%{
-transform:scale(1);
-}
-
-50%{
-transform:scale(1.04);
-}
-
-100%{
-transform:scale(1);
-}
-
 }
 
 /* CONTACT */
@@ -738,34 +720,6 @@ ${product.model}
 🔥 ${product.stock}
 </div>
 
-${product.warranty ?
-
-`<div style="
-display:inline-flex;
-align-items:center;
-justify-content:center;
-background:linear-gradient(135deg,#2563eb,#1d4ed8);
-color:white;
-padding:12px 20px;
-border-radius:14px;
-font-size:15px;
-font-weight:700;
-margin-bottom:18px;
-box-shadow:0 10px 25px rgba(37,99,235,0.25);
-white-space:nowrap;
-width:auto;
-max-width:100%;
-overflow:hidden;
-text-overflow:ellipsis;
-animation:pulse 2s infinite;
-">
-
-🛡&nbsp;${product.warranty}
-
-</div>`
-
-: ""}
-
 <table class="spec-table">
 
 <tr>
@@ -801,6 +755,9 @@ animation:pulse 2s infinite;
 </table>
 
 <ul class="feature-list">
+
+${product.warranty ?
+`<li>🛡 ${product.warranty}</li>` : ""}
 
 <li>Battery & Adapter Covered</li>
 
