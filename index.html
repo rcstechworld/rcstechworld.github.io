@@ -45,10 +45,6 @@ content="summary_large_image">
 <link rel="canonical"
 href="https://rcstechworld.in">
 
-<link rel="icon"
-type="image/png"
-href="images/logo.png">
-
 <link rel="preconnect"
 href="https://fonts.googleapis.com">
 
@@ -60,344 +56,346 @@ rel="stylesheet">
 <style>
 
 *{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:'Montserrat',sans-serif;
-    scroll-behavior:smooth;
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Montserrat',sans-serif;
+scroll-behavior:smooth;
 }
 
 body{
-    background:#f8fafc;
-    color:#111827;
-    overflow-x:hidden;
+background:#f8fafc;
+color:#111827;
+overflow-x:hidden;
 }
 
 /* NAVBAR */
 
 nav{
-    width:100%;
-    background:white;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    padding:20px 8%;
-    position:sticky;
-    top:0;
-    z-index:1000;
-    box-shadow:0 2px 15px rgba(0,0,0,0.08);
+width:100%;
+background:white;
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:20px 8%;
+position:sticky;
+top:0;
+z-index:1000;
+box-shadow:0 2px 15px rgba(0,0,0,0.08);
 }
 
 .logo{
-    font-size:32px;
-    font-weight:800;
-    color:#2563eb;
+font-size:32px;
+font-weight:800;
+color:#2563eb;
 }
 
 nav ul{
-    display:flex;
-    list-style:none;
-    gap:35px;
+display:flex;
+list-style:none;
+gap:35px;
 }
 
 nav ul li a{
-    text-decoration:none;
-    color:#111827;
-    font-weight:600;
-    transition:0.3s;
+text-decoration:none;
+color:#111827;
+font-weight:600;
+transition:0.3s;
 }
 
 nav ul li a:hover{
-    color:#2563eb;
+color:#2563eb;
 }
 
 /* HERO */
 
 .hero{
-    min-height:90vh;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    padding:80px 8%;
-    gap:50px;
-    flex-wrap:wrap;
-    background:linear-gradient(to right,#eff6ff,#ffffff);
+min-height:90vh;
+display:flex;
+align-items:center;
+justify-content:space-between;
+padding:80px 8%;
+gap:50px;
+flex-wrap:wrap;
+background:linear-gradient(to right,#eff6ff,#ffffff);
 }
 
 .hero-text{
-    flex:1;
-    min-width:300px;
+flex:1;
+min-width:300px;
 }
 
 .hero-text h1{
-    font-size:65px;
-    line-height:1.2;
-    margin-bottom:25px;
-    font-weight:800;
+font-size:65px;
+line-height:1.2;
+margin-bottom:25px;
+font-weight:800;
 }
 
 .hero-text h1 span{
-    color:#2563eb;
+color:#2563eb;
 }
 
 .hero-text p{
-    font-size:19px;
-    line-height:1.9;
-    color:#475569;
-    margin-bottom:35px;
+font-size:19px;
+line-height:1.9;
+color:#475569;
+margin-bottom:35px;
 }
 
 .hero-btns{
-    display:flex;
-    gap:20px;
-    flex-wrap:wrap;
+display:flex;
+gap:20px;
+flex-wrap:wrap;
 }
 
 .btn{
-    padding:15px 35px;
-    border-radius:10px;
-    text-decoration:none;
-    font-weight:700;
-    transition:0.3s;
-    display:inline-block;
+padding:15px 35px;
+border-radius:10px;
+text-decoration:none;
+font-weight:700;
+transition:0.3s;
+display:inline-block;
+border:none;
+cursor:pointer;
 }
 
 .primary{
-    background:#2563eb;
-    color:white;
+background:#2563eb;
+color:white;
 }
 
 .primary:hover{
-    transform:translateY(-4px);
-    background:#1d4ed8;
+transform:translateY(-4px);
+background:#1d4ed8;
 }
 
 .secondary{
-    border:2px solid #2563eb;
-    color:#2563eb;
+border:2px solid #2563eb;
+color:#2563eb;
 }
 
 .secondary:hover{
-    background:#2563eb;
-    color:white;
+background:#2563eb;
+color:white;
 }
 
 .hero-image{
-    flex:1;
-    min-width:300px;
+flex:1;
+min-width:300px;
 }
 
 .hero-image img{
-    width:100%;
-    border-radius:25px;
-    box-shadow:0 20px 40px rgba(0,0,0,0.15);
+width:100%;
+border-radius:25px;
+box-shadow:0 20px 40px rgba(0,0,0,0.15);
 }
 
 /* SECTION */
 
 section{
-    padding:90px 8%;
+padding:90px 8%;
 }
 
 .section-title{
-    font-size:50px;
-    margin-bottom:60px;
-    font-weight:800;
-    text-align:center;
+font-size:50px;
+margin-bottom:60px;
+font-weight:800;
+text-align:center;
 }
 
 /* SEARCH */
 
 .search-box{
-    text-align:center;
-    margin-bottom:50px;
+text-align:center;
+margin-bottom:50px;
 }
 
 .search-box input{
-    width:100%;
-    max-width:550px;
-    padding:18px;
-    border-radius:12px;
-    border:1px solid #cbd5e1;
-    font-size:16px;
-    outline:none;
+width:100%;
+max-width:550px;
+padding:18px;
+border-radius:12px;
+border:1px solid #cbd5e1;
+font-size:16px;
+outline:none;
 }
 
 /* WARRANTY FILTER */
 
 #warrantyFilter{
-    padding:15px;
-    border-radius:12px;
-    border:1px solid #cbd5e1;
-    font-size:16px;
-    width:100%;
-    max-width:320px;
+padding:15px;
+border-radius:12px;
+border:1px solid #cbd5e1;
+font-size:16px;
+width:100%;
+max-width:320px;
 }
 
 /* PRODUCTS */
 
 .products{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(380px,1fr));
-    gap:35px;
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(380px,1fr));
+gap:35px;
 }
 
 .product-card{
-    background:white;
-    border-radius:25px;
-    overflow:hidden;
-    box-shadow:0 5px 20px rgba(0,0,0,0.08);
-    transition:0.4s;
+background:white;
+border-radius:25px;
+overflow:hidden;
+box-shadow:0 5px 20px rgba(0,0,0,0.08);
+transition:0.4s;
 }
 
 .product-card:hover{
-    transform:translateY(-10px);
+transform:translateY(-10px);
 }
 
 .product-card img{
-    width:100%;
-    height:320px;
-    object-fit:contain;
-    background:#f1f5f9;
-    padding:20px;
+width:100%;
+height:320px;
+object-fit:contain;
+background:#f1f5f9;
+padding:20px;
 }
 
 .product-info{
-    padding:30px;
+padding:30px;
 }
 
 .product-info h3{
-    font-size:28px;
-    line-height:1.5;
-    margin-bottom:20px;
+font-size:28px;
+line-height:1.5;
+margin-bottom:20px;
 }
 
 .price{
-    color:#2563eb;
-    font-size:42px;
-    font-weight:800;
-    margin-bottom:15px;
+color:#2563eb;
+font-size:42px;
+font-weight:800;
+margin-bottom:15px;
 }
 
 .stock{
-    color:red;
-    font-weight:700;
-    font-size:18px;
-    margin-bottom:25px;
+color:red;
+font-weight:700;
+font-size:18px;
+margin-bottom:25px;
 }
 
 .spec-table{
-    width:100%;
-    margin-bottom:25px;
+width:100%;
+margin-bottom:25px;
 }
 
 .spec-table td{
-    padding:10px 0;
-    border-bottom:1px solid #e2e8f0;
-    font-size:15px;
+padding:10px 0;
+border-bottom:1px solid #e2e8f0;
+font-size:15px;
 }
 
 .spec-table td:first-child{
-    font-weight:700;
-    width:45%;
+font-weight:700;
+width:45%;
 }
 
 .feature-list{
-    padding-left:20px;
-    line-height:2;
-    color:#475569;
-    margin-bottom:30px;
+padding-left:20px;
+line-height:2;
+color:#475569;
+margin-bottom:30px;
 }
 
 /* FEATURES */
 
 .features{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-    gap:25px;
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:25px;
 }
 
 .feature{
-    background:white;
-    padding:35px;
-    border-radius:20px;
-    text-align:center;
-    box-shadow:0 5px 15px rgba(0,0,0,0.06);
-    transition:0.3s;
+background:white;
+padding:35px;
+border-radius:20px;
+text-align:center;
+box-shadow:0 5px 15px rgba(0,0,0,0.06);
+transition:0.3s;
 }
 
 .feature:hover{
-    transform:translateY(-8px);
+transform:translateY(-8px);
 }
 
 .feature h3{
-    margin:20px 0;
-    color:#2563eb;
+margin:20px 0;
+color:#2563eb;
 }
 
 /* ABOUT */
 
 .about{
-    background:white;
-    padding:60px;
-    border-radius:25px;
-    line-height:2;
-    box-shadow:0 5px 20px rgba(0,0,0,0.06);
+background:white;
+padding:60px;
+border-radius:25px;
+line-height:2;
+box-shadow:0 5px 20px rgba(0,0,0,0.06);
 }
 
 .about p{
-    color:#475569;
-    font-size:17px;
+color:#475569;
+font-size:17px;
 }
 
 /* CONTACT */
 
 .contact{
-    background:#1e293b;
-    color:white;
-    border-radius:25px;
-    padding:60px;
-    text-align:center;
+background:#1e293b;
+color:white;
+border-radius:25px;
+padding:60px;
+text-align:center;
 }
 
 .contact h2{
-    font-size:45px;
-    margin-bottom:25px;
+font-size:45px;
+margin-bottom:25px;
 }
 
 .contact p{
-    margin-bottom:15px;
-    color:#cbd5e1;
-    font-size:17px;
+margin-bottom:15px;
+color:#cbd5e1;
+font-size:17px;
 }
 
 /* FOOTER */
 
 footer{
-    background:#0f172a;
-    color:#94a3b8;
-    text-align:center;
-    padding:25px;
+background:#0f172a;
+color:#94a3b8;
+text-align:center;
+padding:25px;
 }
 
 /* WHATSAPP */
 
 .whatsapp{
-    position:fixed;
-    bottom:25px;
-    right:25px;
-    background:#25d366;
-    width:70px;
-    height:70px;
-    border-radius:50%;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    color:white;
-    font-size:34px;
-    text-decoration:none;
-    box-shadow:0 10px 25px rgba(0,0,0,0.25);
-    z-index:999;
+position:fixed;
+bottom:25px;
+right:25px;
+background:#25d366;
+width:70px;
+height:70px;
+border-radius:50%;
+display:flex;
+justify-content:center;
+align-items:center;
+color:white;
+font-size:34px;
+text-decoration:none;
+box-shadow:0 10px 25px rgba(0,0,0,0.25);
+z-index:999;
 }
 
 /* RESPONSIVE */
@@ -405,33 +403,33 @@ footer{
 @media(max-width:768px){
 
 .hero-text h1{
-    font-size:42px;
+font-size:42px;
 }
 
 nav{
-    flex-direction:column;
-    gap:20px;
+flex-direction:column;
+gap:20px;
 }
 
 nav ul{
-    flex-wrap:wrap;
-    justify-content:center;
+flex-wrap:wrap;
+justify-content:center;
 }
 
 .section-title{
-    font-size:38px;
+font-size:38px;
 }
 
 .products{
-    grid-template-columns:1fr;
+grid-template-columns:1fr;
 }
 
 .product-info h3{
-    font-size:24px;
+font-size:24px;
 }
 
 .price{
-    font-size:32px;
+font-size:32px;
 }
 
 }
@@ -543,132 +541,14 @@ id="product-list">
 
 </section>
 
-<section>
-
-<h2 class="section-title">
-Why Choose RCS TECH WORLD
-</h2>
-
-<div class="features">
-
-<div class="feature">
-<h3>New & Refurbished Devices</h3>
-<p>Professionally tested and quality checked systems.</p>
-</div>
-
-<div class="feature">
-<h3>Warranty Support</h3>
-<p>Trusted warranty support for customers.</p>
-</div>
-
-<div class="feature">
-<h3>Affordable Pricing</h3>
-<p>Best pricing for business and personal use.</p>
-</div>
-
-<div class="feature">
-<h3>Bulk Orders</h3>
-<p>Corporate and institutional supply available.</p>
-</div>
-
-<div class="feature">
-<h3>Repair Services</h3>
-<p>Laptop servicing and maintenance support.</p>
-</div>
-
-<div class="feature">
-<h3>Pan India Support</h3>
-<p>Support and delivery across India.</p>
-</div>
-
-</div>
-
-</section>
-
-<section id="about">
-
-<h2 class="section-title">
-About RCS TECH WORLD
-</h2>
-
-<div class="about">
-
-<p>
-RCS TECH WORLD provides high-quality new and refurbished laptops,
-desktops and accessories at affordable prices.
-</p>
-
-<br>
-
-<p>
-We specialize in Dell Latitude, HP EliteBook, Lenovo ThinkPad,
-gaming systems and professional business devices.
-</p>
-
-<br>
-
-<p>
-Every system is professionally tested and optimized before delivery.
-</p>
-
-</div>
-
-</section>
-
-<section id="contact">
-
-<div class="contact">
-
-<h2>
-Contact Us
-</h2>
-
-<p>
-RCS TECH WORLD
-</p>
-
-<p>
-RR-2 Vipin Garden,<br>
-Dwarka More, New Delhi - 110059
-</p>
-
-<p>
-📞 011-49933556, +91 8168411895
-</p>
-
-<p>
-🕒 Monday - Sunday : 10AM - 9PM
-</p>
-
-<br>
-
-<a href="https://wa.me/918168411895"
-class="btn primary">
-Chat on WhatsApp
-</a>
-
-</div>
-
-</section>
-
-<footer>
-
-© 2019 RCS TECH WORLD |
-New & Refurbished Laptop Store
-
-</footer>
-
-<a href="https://wa.me/918168411895"
-class="whatsapp">
-☎
-</a>
-
 <script>
 
 const sheetURL =
 "https://docs.google.com/spreadsheets/d/e/2PACX-1vTIHC0Ww4wCdi7Tx5Xqhye4ljZ5nsM849ghAxvdNMr2Fp3iV5pcO6HGA1oQeePNx4mJd8KALMIyrglx/pub?output=csv";
 
 let allProducts = [];
+
+/* LOAD PRODUCTS */
 
 async function loadProducts(){
 
@@ -729,7 +609,6 @@ product.SKU || "",
 
 image:
 product["Image URL"] ||
-
 "https://cdn.pixabay.com/photo/2014/05/02/21/50/laptop-336369_1280.jpg",
 
 os:
@@ -761,9 +640,32 @@ displayProducts(allProducts);
 
 }
 
+/* DISPLAY PRODUCTS */
+
 function displayProducts(products){
 
 let html = "";
+
+if(products.length === 0){
+
+html = `
+<div style="
+grid-column:1/-1;
+text-align:center;
+padding:50px;
+font-size:24px;
+font-weight:700;
+">
+No Products Found
+</div>
+`;
+
+document.getElementById("product-list")
+.innerHTML = html;
+
+return;
+
+}
 
 products.forEach(product => {
 
@@ -772,28 +674,22 @@ html += `
 <div class="product-card">
 
 <img src="${product.image}"
-alt="${product.brand} ${product.model} refurbished laptop">
+alt="${product.brand} ${product.model}">
 
 <div class="product-info">
 
 <h3>
-
 ${product.condition}
 ${product.brand}
 ${product.model}
-
 </h3>
 
 <div class="price">
-
 ₹${product.price}
-
 </div>
 
 <div class="stock">
-
 🔥 ${product.stock}
-
 </div>
 
 <table class="spec-table">
@@ -842,7 +738,6 @@ ${product.warranty ?
 </ul>
 
 <a href="https://wa.me/918168411895?text=Hello RCS TECH WORLD,%0A%0AI am interested in:%0A%0AProduct: ${product.brand} ${product.model}%0ASKU: ${product.sku}%0APrice: ₹${product.price}"
-
 class="btn primary">
 
 Enquire Now
@@ -857,7 +752,8 @@ Enquire Now
 
 });
 
-document.getElementById("product-list").innerHTML = html;
+document.getElementById("product-list")
+.innerHTML = html;
 
 }
 
@@ -871,53 +767,39 @@ document.getElementById("searchInput")
 
 const warrantyValue =
 document.getElementById("warrantyFilter")
-.value;
-
-const filtered = allProducts.filter(product => {
-
-const matchesSearch =
-
-product.brand.toLowerCase().includes(searchValue) ||
-
-product.model.toLowerCase().includes(searchValue) ||
-
-product.processor.toLowerCase().includes(searchValue) ||
-
-product.category.toLowerCase().includes(searchValue) ||
-
-product.condition.toLowerCase().includes(searchValue);
-
-function filterProducts(){
-
-const searchValue =
-document.getElementById("searchInput")
-.value.toLowerCase();
-
-const warrantyValue =
-document.getElementById("warrantyFilter")
 .value.toLowerCase();
 
 const filtered = allProducts.filter(product => {
 
 const matchesSearch =
 
-product.brand.toLowerCase().includes(searchValue) ||
+(product.brand || "")
+.toLowerCase()
+.includes(searchValue) ||
 
-product.model.toLowerCase().includes(searchValue) ||
+(product.model || "")
+.toLowerCase()
+.includes(searchValue) ||
 
-product.processor.toLowerCase().includes(searchValue) ||
+(product.processor || "")
+.toLowerCase()
+.includes(searchValue) ||
 
-product.category.toLowerCase().includes(searchValue) ||
+(product.category || "")
+.toLowerCase()
+.includes(searchValue) ||
 
-product.condition.toLowerCase().includes(searchValue);
+(product.condition || "")
+.toLowerCase()
+.includes(searchValue);
 
 const matchesWarranty =
 
 !warrantyValue ||
 
-product.warranty.toLowerCase().includes(
-warrantyValue
-);
+(product.warranty || "")
+.toLowerCase()
+.includes(warrantyValue);
 
 return matchesSearch && matchesWarranty;
 
@@ -927,59 +809,17 @@ displayProducts(filtered);
 
 }
 
-document.getElementById("searchInput")
-.addEventListener("keyup", filterProducts);
-
-document.getElementById("warrantyFilter")
-.addEventListener("change", filterProducts);
-
-displayProducts(filtered);
-
-}
+/* EVENTS */
 
 document.getElementById("searchInput")
 .addEventListener("keyup", filterProducts);
 
 document.getElementById("warrantyFilter")
 .addEventListener("change", filterProducts);
+
+/* LOAD */
 
 loadProducts();
-
-</script>
-
-<script type="application/ld+json">
-
-{
-"@context":"https://schema.org",
-
-"@type":"Store",
-
-"name":"RCS TECH WORLD",
-
-"url":"https://rcstechworld.in",
-
-"telephone":"+918168411895",
-
-"address":{
-"@type":"PostalAddress",
-
-"streetAddress":
-"RR-2 Vipin Garden",
-
-"addressLocality":
-"Dwarka More",
-
-"addressRegion":
-"Delhi",
-
-"postalCode":
-"110059",
-
-"addressCountry":
-"IN"
-}
-
-}
 
 </script>
 
