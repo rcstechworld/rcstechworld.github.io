@@ -887,15 +887,51 @@ product.category.toLowerCase().includes(searchValue) ||
 
 product.condition.toLowerCase().includes(searchValue);
 
+function filterProducts(){
+
+const searchValue =
+document.getElementById("searchInput")
+.value.toLowerCase();
+
+const warrantyValue =
+document.getElementById("warrantyFilter")
+.value.toLowerCase();
+
+const filtered = allProducts.filter(product => {
+
+const matchesSearch =
+
+product.brand.toLowerCase().includes(searchValue) ||
+
+product.model.toLowerCase().includes(searchValue) ||
+
+product.processor.toLowerCase().includes(searchValue) ||
+
+product.category.toLowerCase().includes(searchValue) ||
+
+product.condition.toLowerCase().includes(searchValue);
+
 const matchesWarranty =
 
 !warrantyValue ||
 
-product.warranty === warrantyValue;
+product.warranty.toLowerCase().includes(
+warrantyValue
+);
 
 return matchesSearch && matchesWarranty;
 
 });
+
+displayProducts(filtered);
+
+}
+
+document.getElementById("searchInput")
+.addEventListener("keyup", filterProducts);
+
+document.getElementById("warrantyFilter")
+.addEventListener("change", filterProducts);
 
 displayProducts(filtered);
 
