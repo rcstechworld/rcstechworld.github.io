@@ -4,19 +4,17 @@
 <head>
 
 <meta charset="UTF-8">
-
-<meta name="viewport"
-content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>
-RCS TECH WORLD | Refurbished & New Laptops in Delhi
+RCS TECH WORLD | Premium Refurbished & New Laptops
 </title>
 
 <meta name="description"
-content="Buy premium refurbished and new laptops, desktops and accessories from RCS TECH WORLD Delhi. Dell Latitude, HP EliteBook, Lenovo ThinkPad available with warranty and pan India support.">
+content="Buy premium refurbished and new laptops, desktops and accessories from RCS TECH WORLD Delhi with warranty and pan India support.">
 
 <meta name="keywords"
-content="refurbished laptops delhi, used laptops uttam nagar, dell latitude, hp elitebook, lenovo thinkpad, business laptops india">
+content="Refurbished laptops Delhi, Used laptops Uttam Nagar, Dell laptops, HP laptops, Lenovo laptops, Business laptops">
 
 <meta name="robots"
 content="index, follow">
@@ -52,7 +50,7 @@ overflow-x:hidden;
 
 nav{
 width:100%;
-background:white;
+background:#fff;
 display:flex;
 justify-content:space-between;
 align-items:center;
@@ -64,7 +62,7 @@ box-shadow:0 2px 15px rgba(0,0,0,0.08);
 }
 
 .logo{
-font-size:32px;
+font-size:34px;
 font-weight:800;
 color:#2563eb;
 }
@@ -77,8 +75,8 @@ gap:35px;
 
 nav ul li a{
 text-decoration:none;
-color:#111827;
 font-weight:600;
+color:#111827;
 transition:0.3s;
 }
 
@@ -105,7 +103,7 @@ min-width:300px;
 }
 
 .hero-text h1{
-font-size:65px;
+font-size:68px;
 line-height:1.2;
 margin-bottom:25px;
 font-weight:800;
@@ -116,7 +114,7 @@ color:#2563eb;
 }
 
 .hero-text p{
-font-size:19px;
+font-size:20px;
 line-height:1.9;
 color:#475569;
 margin-bottom:35px;
@@ -129,14 +127,12 @@ flex-wrap:wrap;
 }
 
 .btn{
-padding:15px 35px;
-border-radius:12px;
-text-decoration:none;
+padding:16px 35px;
+border-radius:14px;
 font-weight:700;
+text-decoration:none;
 transition:0.3s;
 display:inline-block;
-border:none;
-cursor:pointer;
 }
 
 .primary{
@@ -145,8 +141,8 @@ color:white;
 }
 
 .primary:hover{
-transform:translateY(-4px);
 background:#1d4ed8;
+transform:translateY(-3px);
 }
 
 .secondary{
@@ -177,10 +173,10 @@ padding:90px 8%;
 }
 
 .section-title{
-font-size:52px;
-margin-bottom:60px;
+font-size:54px;
 font-weight:800;
 text-align:center;
+margin-bottom:60px;
 }
 
 /* SEARCH */
@@ -192,16 +188,23 @@ margin-bottom:50px;
 
 .search-box input{
 width:100%;
-max-width:600px;
-padding:20px;
-border-radius:16px;
-border:1px solid #cbd5e1;
-font-size:17px;
+max-width:650px;
+padding:20px 24px;
+border-radius:18px;
+border:2px solid #dbeafe;
+font-size:18px;
 outline:none;
-box-shadow:0 8px 20px rgba(0,0,0,0.05);
+background:white;
+box-shadow:0 12px 30px rgba(0,0,0,0.05);
+transition:0.3s;
 }
 
-/* WARRANTY FILTER */
+.search-box input:focus{
+border-color:#2563eb;
+box-shadow:0 15px 35px rgba(37,99,235,0.15);
+}
+
+/* FILTER */
 
 .filter-wrapper{
 display:flex;
@@ -211,16 +214,17 @@ margin-top:25px;
 
 .filter-inner{
 position:relative;
-width:340px;
+width:100%;
+max-width:650px;
 }
 
 #warrantyFilter{
 width:100%;
-padding:18px 20px;
+padding:20px 24px;
 border-radius:18px;
 border:2px solid #2563eb;
 background:white;
-font-size:17px;
+font-size:18px;
 font-weight:700;
 color:#111827;
 outline:none;
@@ -228,22 +232,24 @@ cursor:pointer;
 appearance:none;
 -webkit-appearance:none;
 -moz-appearance:none;
-box-shadow:0 12px 30px rgba(37,99,235,0.15);
+box-shadow:0 12px 30px rgba(37,99,235,0.12);
 transition:0.3s;
 }
 
 #warrantyFilter:hover{
 transform:translateY(-2px);
+box-shadow:0 16px 35px rgba(37,99,235,0.18);
 }
 
 .filter-arrow{
 position:absolute;
-right:18px;
+right:24px;
 top:50%;
 transform:translateY(-50%);
 pointer-events:none;
-font-size:20px;
+font-size:22px;
 color:#2563eb;
+font-weight:bold;
 }
 
 /* PRODUCTS */
@@ -281,26 +287,26 @@ padding:30px;
 .product-info h3{
 font-size:26px;
 line-height:1.5;
-margin-bottom:20px;
+margin-bottom:18px;
 }
 
 .price{
-color:#2563eb;
 font-size:40px;
 font-weight:800;
+color:#2563eb;
 margin-bottom:15px;
 }
 
 .stock{
 color:red;
+font-size:16px;
 font-weight:700;
-font-size:17px;
-margin-bottom:25px;
+margin-bottom:20px;
 }
 
 .spec-table{
 width:100%;
-margin-bottom:25px;
+margin-bottom:20px;
 }
 
 .spec-table td{
@@ -317,40 +323,14 @@ width:45%;
 .feature-list{
 padding-left:20px;
 line-height:2;
+margin-bottom:25px;
 color:#475569;
-margin-bottom:30px;
-}
-
-/* FEATURES */
-
-.features{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-gap:25px;
-}
-
-.feature{
-background:white;
-padding:35px;
-border-radius:20px;
-text-align:center;
-box-shadow:0 5px 15px rgba(0,0,0,0.06);
-transition:0.3s;
-}
-
-.feature:hover{
-transform:translateY(-8px);
-}
-
-.feature h3{
-margin:20px 0;
-color:#2563eb;
 }
 
 /* CONTACT */
 
 .contact{
-background:#1e293b;
+background:#111827;
 color:white;
 border-radius:25px;
 padding:60px;
@@ -358,13 +338,13 @@ text-align:center;
 }
 
 .contact h2{
-font-size:45px;
-margin-bottom:25px;
+font-size:46px;
+margin-bottom:20px;
 }
 
 .contact p{
-margin-bottom:15px;
-color:#cbd5e1;
+margin-bottom:12px;
+color:#d1d5db;
 font-size:17px;
 }
 
@@ -373,8 +353,8 @@ font-size:17px;
 footer{
 background:#0f172a;
 color:#94a3b8;
-text-align:center;
 padding:25px;
+text-align:center;
 }
 
 /* WHATSAPP */
@@ -397,7 +377,7 @@ box-shadow:0 10px 25px rgba(0,0,0,0.25);
 z-index:999;
 }
 
-/* RESPONSIVE */
+/* MOBILE */
 
 @media(max-width:768px){
 
@@ -455,7 +435,7 @@ Laptops & Desktops
 </h1>
 
 <p>
-Buy premium new and refurbished Dell, HP, Lenovo laptops and desktops with warranty and pan India support.
+Buy premium Dell, HP, Lenovo laptops and desktops with warranty and pan India support.
 </p>
 
 <div class="hero-btns">
@@ -577,8 +557,7 @@ Chat on WhatsApp
 
 <footer>
 
-© 2026 RCS TECH WORLD |
-All Rights Reserved
+© 2026 RCS TECH WORLD | All Rights Reserved
 
 </footer>
 
@@ -598,7 +577,7 @@ let allProducts = [];
 
 function loadProducts(){
 
-Papa.parse(sheetURL, {
+Papa.parse(sheetURL,{
 
 download:true,
 header:true,
@@ -611,7 +590,7 @@ allProducts = [];
 
 const uniqueSKU = new Set();
 
-rows.forEach(product => {
+rows.forEach(product=>{
 
 const sku =
 product.SKU ||
@@ -710,14 +689,13 @@ No Products Found
 </div>
 `;
 
-document.getElementById("product-list")
-.innerHTML = html;
+document.getElementById("product-list").innerHTML = html;
 
 return;
 
 }
 
-products.forEach(product => {
+products.forEach(product=>{
 
 html += `
 
@@ -802,8 +780,7 @@ Enquire Now
 
 });
 
-document.getElementById("product-list")
-.innerHTML = html;
+document.getElementById("product-list").innerHTML = html;
 
 }
 
@@ -819,17 +796,21 @@ const warrantyValue =
 document.getElementById("warrantyFilter")
 .value.toLowerCase();
 
-const filtered = allProducts.filter(product => {
+const filtered = allProducts.filter(product=>{
 
 const matchesSearch =
 
 (product.brand || "")
 .toLowerCase()
-.includes(searchValue) ||
+.includes(searchValue)
+
+||
 
 (product.model || "")
 .toLowerCase()
-.includes(searchValue) ||
+.includes(searchValue)
+
+||
 
 (product.processor || "")
 .toLowerCase()
@@ -851,15 +832,11 @@ displayProducts(filtered);
 
 }
 
-/* EVENTS */
-
 document.getElementById("searchInput")
-.addEventListener("keyup", filterProducts);
+.addEventListener("keyup",filterProducts);
 
 document.getElementById("warrantyFilter")
-.addEventListener("change", filterProducts);
-
-/* LOAD */
+.addEventListener("change",filterProducts);
 
 loadProducts();
 
