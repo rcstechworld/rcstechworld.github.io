@@ -1,546 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-
-<meta charset="UTF-8">
-
-<meta name="viewport"
-content="width=device-width, initial-scale=1.0">
-
-<title>
-RCS TECH WORLD | Refurbished & New Laptops in Delhi
-</title>
-
-<meta name="description"
-content="Buy premium refurbished and new laptops, desktops and accessories from RCS TECH WORLD Delhi. Dell Latitude, HP EliteBook, Lenovo ThinkPad available with warranty and pan India support.">
-
-<meta name="keywords"
-content="refurbished laptops delhi, used laptops uttam nagar, dell latitude, hp elitebook, lenovo thinkpad, business laptops india, refurbished desktops delhi">
-
-<meta name="author"
-content="RCS TECH WORLD">
-
-<meta name="robots"
-content="index, follow">
-
-<meta property="og:title"
-content="RCS TECH WORLD">
-
-<meta property="og:description"
-content="Premium New & Refurbished Laptops & Desktops">
-
-<meta property="og:image"
-content="https://rcstechworld.in/images/banner.jpg">
-
-<meta property="og:url"
-content="https://rcstechworld.in">
-
-<meta property="og:type"
-content="website">
-
-<meta name="twitter:card"
-content="summary_large_image">
-
-<link rel="canonical"
-href="https://rcstechworld.in">
-
-<link rel="preconnect"
-href="https://fonts.googleapis.com">
-
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap"
-rel="stylesheet">
-
-<script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
-
-<style>
-
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:'Montserrat',sans-serif;
-scroll-behavior:smooth;
-}
-
-body{
-background:#f8fafc;
-color:#111827;
-overflow-x:hidden;
-}
-
-/* NAVBAR */
-
-nav{
-width:100%;
-background:white;
-display:flex;
-justify-content:space-between;
-align-items:center;
-padding:20px 8%;
-position:sticky;
-top:0;
-z-index:1000;
-box-shadow:0 2px 15px rgba(0,0,0,0.08);
-}
-
-.logo{
-font-size:32px;
-font-weight:800;
-color:#2563eb;
-}
-
-nav ul{
-display:flex;
-list-style:none;
-gap:35px;
-}
-
-nav ul li a{
-text-decoration:none;
-color:#111827;
-font-weight:600;
-transition:0.3s;
-}
-
-nav ul li a:hover{
-color:#2563eb;
-}
-
-/* HERO */
-
-.hero{
-min-height:90vh;
-display:flex;
-align-items:center;
-justify-content:space-between;
-padding:80px 8%;
-gap:50px;
-flex-wrap:wrap;
-background:linear-gradient(to right,#eff6ff,#ffffff);
-}
-
-.hero-text{
-flex:1;
-min-width:300px;
-}
-
-.hero-text h1{
-font-size:65px;
-line-height:1.2;
-margin-bottom:25px;
-font-weight:800;
-}
-
-.hero-text h1 span{
-color:#2563eb;
-}
-
-.hero-text p{
-font-size:19px;
-line-height:1.9;
-color:#475569;
-margin-bottom:35px;
-}
-
-.hero-btns{
-display:flex;
-gap:20px;
-flex-wrap:wrap;
-}
-
-.btn{
-padding:15px 35px;
-border-radius:10px;
-text-decoration:none;
-font-weight:700;
-transition:0.3s;
-display:inline-block;
-border:none;
-cursor:pointer;
-}
-
-.primary{
-background:#2563eb;
-color:white;
-}
-
-.primary:hover{
-transform:translateY(-4px);
-background:#1d4ed8;
-}
-
-.secondary{
-border:2px solid #2563eb;
-color:#2563eb;
-}
-
-.secondary:hover{
-background:#2563eb;
-color:white;
-}
-
-.hero-image{
-flex:1;
-min-width:300px;
-}
-
-.hero-image img{
-width:100%;
-border-radius:25px;
-box-shadow:0 20px 40px rgba(0,0,0,0.15);
-}
-
-/* SECTION */
-
-section{
-padding:90px 8%;
-}
-
-.section-title{
-font-size:50px;
-margin-bottom:60px;
-font-weight:800;
-text-align:center;
-}
-
-/* SEARCH */
-
-.search-box{
-text-align:center;
-margin-bottom:50px;
-}
-
-.search-box input{
-width:100%;
-max-width:550px;
-padding:18px;
-border-radius:12px;
-border:1px solid #cbd5e1;
-font-size:16px;
-outline:none;
-}
-
-/* WARRANTY FILTER */
-
-#warrantyFilter{
-padding:15px;
-border-radius:12px;
-border:1px solid #cbd5e1;
-font-size:16px;
-width:100%;
-max-width:320px;
-}
-
-/* PRODUCTS */
-
-.products{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(380px,1fr));
-gap:35px;
-}
-
-.product-card{
-background:white;
-border-radius:25px;
-overflow:hidden;
-box-shadow:0 5px 20px rgba(0,0,0,0.08);
-transition:0.4s;
-}
-
-.product-card:hover{
-transform:translateY(-10px);
-}
-
-.product-card img{
-width:100%;
-height:320px;
-object-fit:contain;
-background:#f1f5f9;
-padding:20px;
-}
-
-.product-info{
-padding:30px;
-}
-
-.product-info h3{
-font-size:28px;
-line-height:1.5;
-margin-bottom:20px;
-}
-
-.price{
-color:#2563eb;
-font-size:42px;
-font-weight:800;
-margin-bottom:15px;
-}
-
-.stock{
-color:red;
-font-weight:700;
-font-size:18px;
-margin-bottom:25px;
-}
-
-.spec-table{
-width:100%;
-margin-bottom:25px;
-}
-
-.spec-table td{
-padding:10px 0;
-border-bottom:1px solid #e2e8f0;
-font-size:15px;
-}
-
-.spec-table td:first-child{
-font-weight:700;
-width:45%;
-}
-
-.feature-list{
-padding-left:20px;
-line-height:2;
-color:#475569;
-margin-bottom:30px;
-}
-
-/* FEATURES */
-
-.features{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-gap:25px;
-}
-
-.feature{
-background:white;
-padding:35px;
-border-radius:20px;
-text-align:center;
-box-shadow:0 5px 15px rgba(0,0,0,0.06);
-transition:0.3s;
-}
-
-.feature:hover{
-transform:translateY(-8px);
-}
-
-.feature h3{
-margin:20px 0;
-color:#2563eb;
-}
-
-/* ABOUT */
-
-.about{
-background:white;
-padding:60px;
-border-radius:25px;
-line-height:2;
-box-shadow:0 5px 20px rgba(0,0,0,0.06);
-}
-
-.about p{
-color:#475569;
-font-size:17px;
-}
-
-/* CONTACT */
-
-.contact{
-background:#1e293b;
-color:white;
-border-radius:25px;
-padding:60px;
-text-align:center;
-}
-
-.contact h2{
-font-size:45px;
-margin-bottom:25px;
-}
-
-.contact p{
-margin-bottom:15px;
-color:#cbd5e1;
-font-size:17px;
-}
-
-/* FOOTER */
-
-footer{
-background:#0f172a;
-color:#94a3b8;
-text-align:center;
-padding:25px;
-}
-
-/* WHATSAPP */
-
-.whatsapp{
-position:fixed;
-bottom:25px;
-right:25px;
-background:#25d366;
-width:70px;
-height:70px;
-border-radius:50%;
-display:flex;
-justify-content:center;
-align-items:center;
-color:white;
-font-size:34px;
-text-decoration:none;
-box-shadow:0 10px 25px rgba(0,0,0,0.25);
-z-index:999;
-}
-
-/* RESPONSIVE */
-
-@media(max-width:768px){
-
-.hero-text h1{
-font-size:42px;
-}
-
-nav{
-flex-direction:column;
-gap:20px;
-}
-
-nav ul{
-flex-wrap:wrap;
-justify-content:center;
-}
-
-.section-title{
-font-size:38px;
-}
-
-.products{
-grid-template-columns:1fr;
-}
-
-.product-info h3{
-font-size:24px;
-}
-
-.price{
-font-size:32px;
-}
-
-}
-
-</style>
-
-</head>
-
-<body>
-
-<nav>
-
-<div class="logo">
-RCS TECH WORLD
-</div>
-
-<ul>
-<li><a href="#">Home</a></li>
-<li><a href="#products">Products</a></li>
-<li><a href="#about">About</a></li>
-<li><a href="#contact">Contact</a></li>
-</ul>
-
-</nav>
-
-<section class="hero">
-
-<div class="hero-text">
-
-<h1>
-Premium <span>New & Refurbished</span><br>
-Laptops & Desktops
-</h1>
-
-<p>
-Buy premium new and refurbished Dell, HP, Lenovo, Apple laptops,
-desktops and accessories at affordable prices for students,
-businesses and professionals.
-</p>
-
-<div class="hero-btns">
-
-<a href="#products"
-class="btn primary">
-Shop Now
-</a>
-
-<a href="https://wa.me/918168411895"
-class="btn secondary">
-WhatsApp Us
-</a>
-
-</div>
-
-</div>
-
-<div class="hero-image">
-
-<img src="https://images.unsplash.com/photo-1496181133206-80ce9b88a853?q=80&w=1200&auto=format&fit=crop">
-
-</div>
-
-</section>
-
-<section id="products">
-
-<h2 class="section-title">
-Featured Products
-</h2>
-
-<div class="search-box">
-
-<input type="text"
-id="searchInput"
-placeholder="Search Dell, HP, Lenovo, Laptop, Desktop">
-
-<br><br>
-
-<select id="warrantyFilter">
-
-<option value="">
-All Warranty
-</option>
-
-<option value="1 Month Warranty">
-1 Month Warranty
-</option>
-
-<option value="6 Months Warranty">
-6 Months Warranty
-</option>
-
-<option value="1 Year Warranty">
-1 Year Warranty
-</option>
-
-<option value="3 Years Warranty">
-3 Years Warranty
-</option>
-
-</select>
-
-</div>
-
-<div class="products"
-id="product-list">
-
-</div>
-
-</section>
-
 <script>
 
 const sheetURL =
@@ -550,7 +7,7 @@ let allProducts = [];
 
 /* LOAD PRODUCTS */
 
-async function loadProducts(){
+function loadProducts(){
 
 Papa.parse(sheetURL, {
 
@@ -567,64 +24,101 @@ const uniqueSKU = new Set();
 
 rows.forEach(product => {
 
-if(product.SKU &&
-!uniqueSKU.has(product.SKU)){
+const sku =
+product.SKU ||
+product.sku ||
+"";
 
-uniqueSKU.add(product.SKU);
+if(sku && !uniqueSKU.has(sku)){
+
+uniqueSKU.add(sku);
 
 allProducts.push({
 
 condition:
-product.Condition || "Refurbished",
+product.Condition ||
+product.condition ||
+"Refurbished",
 
 category:
-product.Category || "",
+product.Category ||
+product.category ||
+"",
 
 brand:
-product.Brand || "",
+product.Brand ||
+product.brand ||
+"",
 
 model:
-product.Model || "",
+product.Model ||
+product.model ||
+"",
 
 processor:
-product.Processor || "",
+product.Processor ||
+product.processor ||
+"",
 
 ram:
-product.RAM || "",
+product.RAM ||
+product.ram ||
+"",
 
 ssd:
-product["HDD/SSD"] || "",
+product["HDD/SSD"] ||
+product.Storage ||
+product.storage ||
+"",
 
 screen:
-product.Screen || "",
+product.Screen ||
+product.screen ||
+"",
 
 touch:
-product.Touch || "",
+product.Touch ||
+product.touch ||
+"",
 
 price:
-product["Base Price"] || "",
+product["Base Price"] ||
+product.Price ||
+product.price ||
+"",
 
 sku:
-product.SKU || "",
+sku,
 
 image:
 product["Image URL"] ||
+product.image ||
 "https://cdn.pixabay.com/photo/2014/05/02/21/50/laptop-336369_1280.jpg",
 
 os:
-product.OS || "Windows Pro",
+product.OS ||
+product.os ||
+"Windows Pro",
 
 webcam:
-product.Webcam || "Yes",
+product.Webcam ||
+product.webcam ||
+"Yes",
 
 warranty:
-product.Warranty || "",
+product.Warranty ||
+product.warranty ||
+"",
 
 cpu:
-product["CPU Speed"] || "1.80 GHz",
+product["CPU Speed"] ||
+product.cpu ||
+"1.80 GHz",
 
 stock:
-product.Stock || "Only Few Left"
+product.Stock ||
+product.stock ||
+"Only Few Left"
 
 });
 
@@ -649,15 +143,19 @@ let html = "";
 if(products.length === 0){
 
 html = `
+
 <div style="
 grid-column:1/-1;
 text-align:center;
-padding:50px;
-font-size:24px;
+padding:60px;
+font-size:28px;
 font-weight:700;
 ">
+
 No Products Found
+
 </div>
+
 `;
 
 document.getElementById("product-list")
@@ -738,6 +236,7 @@ ${product.warranty ?
 </ul>
 
 <a href="https://wa.me/918168411895?text=Hello RCS TECH WORLD,%0A%0AI am interested in:%0A%0AProduct: ${product.brand} ${product.model}%0ASKU: ${product.sku}%0APrice: ₹${product.price}"
+
 class="btn primary">
 
 Enquire Now
@@ -817,12 +316,8 @@ document.getElementById("searchInput")
 document.getElementById("warrantyFilter")
 .addEventListener("change", filterProducts);
 
-/* LOAD */
+/* LOAD DATA */
 
 loadProducts();
 
 </script>
-
-</body>
-
-</html>
