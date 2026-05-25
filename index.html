@@ -223,6 +223,17 @@ section{
     outline:none;
 }
 
+/* WARRANTY FILTER */
+
+#warrantyFilter{
+    padding:15px;
+    border-radius:12px;
+    border:1px solid #cbd5e1;
+    font-size:16px;
+    width:100%;
+    max-width:320px;
+}
+
 /* PRODUCTS */
 
 .products{
@@ -497,6 +508,32 @@ Featured Products
 id="searchInput"
 placeholder="Search Dell, HP, Lenovo, Laptop, Desktop">
 
+<br><br>
+
+<select id="warrantyFilter">
+
+<option value="">
+All Warranty
+</option>
+
+<option value="1 Month Warranty">
+1 Month Warranty
+</option>
+
+<option value="6 Months Warranty">
+6 Months Warranty
+</option>
+
+<option value="1 Year Warranty">
+1 Year Warranty
+</option>
+
+<option value="3 Years Warranty">
+3 Years Warranty
+</option>
+
+</select>
+
 </div>
 
 <div class="products"
@@ -572,45 +609,6 @@ gaming systems and professional business devices.
 
 <p>
 Every system is professionally tested and optimized before delivery.
-</p>
-
-</div>
-
-</section>
-
-<!-- SEO CONTENT -->
-
-<section>
-
-<h2 class="section-title">
-Best Refurbished Laptop Store in Delhi
-</h2>
-
-<div class="about">
-
-<p>
-
-RCS TECH WORLD is one of the trusted refurbished laptop sellers
-in Delhi providing premium Dell Latitude, HP EliteBook,
-Lenovo ThinkPad and business desktops at affordable prices.
-
-</p>
-
-<br>
-
-<p>
-
-We provide refurbished and new laptops for students,
-office work, coding, online classes, business and gaming use.
-
-</p>
-
-<br>
-
-<p>
-
-Bulk corporate orders, GST billing and pan India support available.
-
 </p>
 
 </div>
@@ -835,7 +833,7 @@ ${product.model}
 <ul class="feature-list">
 
 ${product.warranty ?
-`<li>${product.warranty}</li>` : ""}
+`<li>🛡 ${product.warranty}</li>` : ""}
 
 <li>Battery & Adapter Covered</li>
 
@@ -863,28 +861,51 @@ document.getElementById("product-list").innerHTML = html;
 
 }
 
+/* FILTER PRODUCTS */
+
+function filterProducts(){
+
+const searchValue =
 document.getElementById("searchInput")
-.addEventListener("keyup", function(){
+.value.toLowerCase();
 
-const value = this.value.toLowerCase();
+const warrantyValue =
+document.getElementById("warrantyFilter")
+.value;
 
-const filtered = allProducts.filter(product =>
+const filtered = allProducts.filter(product => {
 
-product.brand.toLowerCase().includes(value) ||
+const matchesSearch =
 
-product.model.toLowerCase().includes(value) ||
+product.brand.toLowerCase().includes(searchValue) ||
 
-product.processor.toLowerCase().includes(value) ||
+product.model.toLowerCase().includes(searchValue) ||
 
-product.category.toLowerCase().includes(value) ||
+product.processor.toLowerCase().includes(searchValue) ||
 
-product.condition.toLowerCase().includes(value)
+product.category.toLowerCase().includes(searchValue) ||
 
-);
+product.condition.toLowerCase().includes(searchValue);
+
+const matchesWarranty =
+
+!warrantyValue ||
+
+product.warranty === warrantyValue;
+
+return matchesSearch && matchesWarranty;
+
+});
 
 displayProducts(filtered);
 
-});
+}
+
+document.getElementById("searchInput")
+.addEventListener("keyup", filterProducts);
+
+document.getElementById("warrantyFilter")
+.addEventListener("change", filterProducts);
 
 loadProducts();
 
