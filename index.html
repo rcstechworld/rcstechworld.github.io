@@ -13,15 +13,6 @@ RCS TECH WORLD | Premium Refurbished & New Laptops
 <meta name="description"
 content="Buy premium refurbished and new laptops, desktops and accessories from RCS TECH WORLD Delhi with warranty and pan India support.">
 
-<meta name="keywords"
-content="Refurbished laptops Delhi, Used laptops Uttam Nagar, Dell laptops, HP laptops, Lenovo laptops, Business laptops">
-
-<meta name="robots"
-content="index, follow">
-
-<link rel="canonical"
-href="https://rcstechworld.in">
-
 <link rel="preconnect"
 href="https://fonts.googleapis.com">
 
@@ -75,7 +66,8 @@ gap:35px;
 
 nav ul li a{
 text-decoration:none;
-font-weight:600;
+font-weight:700;
+font-size:18px;
 color:#111827;
 transition:0.3s;
 }
@@ -201,7 +193,6 @@ transition:0.3s;
 
 .search-box input:focus{
 border-color:#2563eb;
-box-shadow:0 15px 35px rgba(37,99,235,0.15);
 }
 
 /* FILTER */
@@ -230,15 +221,7 @@ color:#111827;
 outline:none;
 cursor:pointer;
 appearance:none;
--webkit-appearance:none;
--moz-appearance:none;
 box-shadow:0 12px 30px rgba(37,99,235,0.12);
-transition:0.3s;
-}
-
-#warrantyFilter:hover{
-transform:translateY(-2px);
-box-shadow:0 16px 35px rgba(37,99,235,0.18);
 }
 
 .filter-arrow{
@@ -249,7 +232,6 @@ transform:translateY(-50%);
 pointer-events:none;
 font-size:22px;
 color:#2563eb;
-font-weight:bold;
 }
 
 /* PRODUCTS */
@@ -266,6 +248,7 @@ border-radius:25px;
 overflow:hidden;
 box-shadow:0 8px 25px rgba(0,0,0,0.08);
 transition:0.4s;
+position:relative;
 }
 
 .product-card:hover{
@@ -280,14 +263,35 @@ background:#f1f5f9;
 padding:20px;
 }
 
+.condition-badge{
+position:absolute;
+top:15px;
+left:15px;
+padding:10px 18px;
+border-radius:30px;
+font-size:14px;
+font-weight:700;
+color:white;
+z-index:2;
+}
+
+.brand-new{
+background:#16a34a;
+}
+
+.refurbished{
+background:#dc2626;
+}
+
 .product-info{
 padding:30px;
 }
 
 .product-info h3{
-font-size:26px;
+font-size:28px;
 line-height:1.5;
 margin-bottom:18px;
+min-height:90px;
 }
 
 .price{
@@ -320,10 +324,37 @@ font-weight:700;
 width:45%;
 }
 
+.warranty-box{
+background:#2563eb;
+color:white;
+padding:14px;
+border-radius:12px;
+font-weight:700;
+text-align:center;
+margin-bottom:20px;
+font-size:16px;
+}
+
 .feature-list{
 padding-left:20px;
 line-height:2;
 margin-bottom:25px;
+color:#475569;
+}
+
+/* ABOUT */
+
+.about-box{
+background:white;
+padding:60px;
+border-radius:25px;
+box-shadow:0 8px 25px rgba(0,0,0,0.08);
+text-align:center;
+}
+
+.about-box p{
+font-size:20px;
+line-height:2;
 color:#475569;
 }
 
@@ -411,6 +442,8 @@ grid-template-columns:1fr;
 
 <body>
 
+<!-- NAVBAR -->
+
 <nav>
 
 <div class="logo">
@@ -420,17 +453,20 @@ RCS TECH WORLD
 <ul>
 <li><a href="#">Home</a></li>
 <li><a href="#products">Products</a></li>
+<li><a href="#about">About</a></li>
 <li><a href="#contact">Contact</a></li>
 </ul>
 
 </nav>
+
+<!-- HERO -->
 
 <section class="hero">
 
 <div class="hero-text">
 
 <h1>
-Premium <span>New & Refurbished</span><br>
+Premium <span>Brand New & Refurbished</span><br>
 Laptops & Desktops
 </h1>
 
@@ -462,10 +498,12 @@ WhatsApp Us
 
 </section>
 
+<!-- PRODUCTS -->
+
 <section id="products">
 
 <h2 class="section-title">
-Featured Products
+Brand New Laptops
 </h2>
 
 <div class="search-box">
@@ -513,11 +551,46 @@ placeholder="Search Dell, HP, Lenovo, Laptop, Desktop">
 </div>
 
 <div class="products"
-id="product-list">
+id="brandnew-products">
+</div>
+
+<br><br><br>
+
+<h2 class="section-title">
+Refurbished Laptops
+</h2>
+
+<div class="products"
+id="refurbished-products">
+</div>
+
+</section>
+
+<!-- ABOUT -->
+
+<section id="about">
+
+<h2 class="section-title">
+About Us
+</h2>
+
+<div class="about-box">
+
+<p>
+RCS TECH WORLD provides premium quality Brand New and Refurbished laptops, desktops and accessories with warranty and pan India support.
+</p>
+
+<br>
+
+<p>
+We deal in Dell, HP, Lenovo and business-class systems for students, professionals and businesses.
+</p>
 
 </div>
 
 </section>
+
+<!-- CONTACT -->
 
 <section id="contact">
 
@@ -555,16 +628,22 @@ Chat on WhatsApp
 
 </section>
 
+<!-- FOOTER -->
+
 <footer>
 
 © 2026 RCS TECH WORLD | All Rights Reserved
 
 </footer>
 
+<!-- WHATSAPP -->
+
 <a href="https://wa.me/918168411895"
 class="whatsapp">
 ☎
 </a>
+
+<!-- SCRIPT -->
 
 <script>
 
@@ -604,10 +683,12 @@ uniqueSKU.add(sku);
 allProducts.push({
 
 condition:
-product.Condition &&
-product.Condition.trim() !== ""
-? product.Condition
-: "Refurbished",
+product.Condition ||
+"Refurbished",
+
+brand:
+product.Brand ||
+"",
 
 model:
 product.Model ||
@@ -671,33 +752,24 @@ displayProducts(allProducts);
 
 function displayProducts(products){
 
-let html = "";
-
-if(products.length === 0){
-
-html = `
-<div style="
-grid-column:1/-1;
-text-align:center;
-padding:60px;
-font-size:28px;
-font-weight:700;
-">
-No Products Found
-</div>
-`;
-
-document.getElementById("product-list").innerHTML = html;
-
-return;
-
-}
+let brandNewHTML = "";
+let refurbishedHTML = "";
 
 products.forEach(product=>{
 
-html += `
+const card = `
 
 <div class="product-card">
+
+<div class="condition-badge ${
+product.condition.toLowerCase() === "brand new"
+? "brand-new"
+: "refurbished"
+}">
+
+${product.condition}
+
+</div>
 
 <img src="${product.image}"
 alt="${product.brand} ${product.model}">
@@ -705,7 +777,6 @@ alt="${product.brand} ${product.model}">
 <div class="product-info">
 
 <h3>
-${product.condition}
 ${product.brand}
 ${product.model}
 </h3>
@@ -737,7 +808,8 @@ ${product.model}
 
 <tr>
 <td>Screen</td>
-<td>${product.screen}</td>
+<td>${product.screen}
+</td>
 </tr>
 
 <tr>
@@ -752,10 +824,11 @@ ${product.model}
 
 </table>
 
-<ul class="feature-list">
+<div class="warranty-box">
+🛡 ${product.warranty}
+</div>
 
-${product.warranty ?
-`<li>🛡 ${product.warranty}</li>` : ""}
+<ul class="feature-list">
 
 <li>Battery & Adapter Covered</li>
 
@@ -776,9 +849,26 @@ Enquire Now
 
 `;
 
+if(
+product.condition &&
+product.condition.toLowerCase() === "brand new"
+){
+
+brandNewHTML += card;
+
+}else{
+
+refurbishedHTML += card;
+
+}
+
 });
 
-document.getElementById("product-list").innerHTML = html;
+document.getElementById("brandnew-products")
+.innerHTML = brandNewHTML;
+
+document.getElementById("refurbished-products")
+.innerHTML = refurbishedHTML;
 
 }
 
@@ -841,5 +931,4 @@ loadProducts();
 </script>
 
 </body>
-
 </html>
