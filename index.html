@@ -604,12 +604,10 @@ uniqueSKU.add(sku);
 allProducts.push({
 
 condition:
-product.Condition ||
-"Refurbished",
-
-brand:
-product.Brand ||
-"",
+product.Condition &&
+product.Condition.trim() !== ""
+? product.Condition
+: "Refurbished",
 
 model:
 product.Model ||
