@@ -13,6 +13,15 @@ RCS TECH WORLD | Premium Refurbished & New Laptops
 <meta name="description"
 content="Buy premium refurbished and new laptops, desktops and accessories from RCS TECH WORLD Delhi with warranty and pan India support.">
 
+<meta name="keywords"
+content="Refurbished laptops Delhi, Used laptops Uttam Nagar, Dell laptops, HP laptops, Lenovo laptops">
+
+<meta name="robots"
+content="index, follow">
+
+<link rel="canonical"
+href="https://rcstechworld.in">
+
 <link rel="preconnect"
 href="https://fonts.googleapis.com">
 
@@ -52,10 +61,18 @@ z-index:1000;
 box-shadow:0 2px 15px rgba(0,0,0,0.08);
 }
 
+/* LOGO */
+
 .logo{
-font-size:34px;
-font-weight:800;
-color:#2563eb;
+display:flex;
+align-items:center;
+}
+
+.logo img{
+height:90px;
+width:auto;
+object-fit:contain;
+display:block;
 }
 
 nav ul{
@@ -360,6 +377,39 @@ font-weight:700;
 margin-bottom:20px;
 }
 
+/* WARRANTY */
+
+.warranty-box{
+display:inline-flex;
+align-items:center;
+justify-content:center;
+background:linear-gradient(135deg,#2563eb,#1d4ed8);
+color:white;
+padding:12px 20px;
+border-radius:14px;
+font-size:15px;
+font-weight:700;
+margin-bottom:18px;
+box-shadow:0 10px 25px rgba(37,99,235,0.25);
+animation:pulse 2s infinite;
+}
+
+@keyframes pulse{
+
+0%{
+transform:scale(1);
+}
+
+50%{
+transform:scale(1.04);
+}
+
+100%{
+transform:scale(1);
+}
+
+}
+
 .spec-table{
 width:100%;
 margin-bottom:20px;
@@ -374,17 +424,6 @@ font-size:15px;
 .spec-table td:first-child{
 font-weight:700;
 width:45%;
-}
-
-.warranty-box{
-background:#2563eb;
-color:white;
-padding:14px;
-border-radius:12px;
-font-weight:700;
-text-align:center;
-margin-bottom:20px;
-font-size:16px;
 }
 
 .feature-list{
@@ -460,55 +499,6 @@ box-shadow:0 10px 25px rgba(0,0,0,0.25);
 z-index:999;
 }
 
-/* IMAGE ZOOM MODAL */
-
-.image-modal{
-display:none;
-position:fixed;
-z-index:9999;
-padding-top:60px;
-left:0;
-top:0;
-width:100%;
-height:100%;
-background:rgba(0,0,0,0.92);
-justify-content:center;
-align-items:center;
-}
-
-.image-modal img{
-max-width:90%;
-max-height:85%;
-border-radius:20px;
-background:white;
-padding:20px;
-animation:zoomIn 0.3s ease;
-}
-
-.close-modal{
-position:absolute;
-top:25px;
-right:40px;
-font-size:40px;
-color:white;
-cursor:pointer;
-font-weight:bold;
-}
-
-@keyframes zoomIn{
-
-from{
-transform:scale(0.7);
-opacity:0;
-}
-
-to{
-transform:scale(1);
-opacity:1;
-}
-
-}
-
 /* MOBILE */
 
 @media(max-width:768px){
@@ -520,6 +510,10 @@ font-size:42px;
 nav{
 flex-direction:column;
 gap:20px;
+}
+
+.logo img{
+height:65px;
 }
 
 nav ul{
@@ -548,7 +542,10 @@ grid-template-columns:1fr;
 <nav>
 
 <div class="logo">
-RCS TECH WORLD
+
+<img src="logo.png"
+alt="RCS TECH WORLD Logo">
+
 </div>
 
 <ul>
@@ -780,35 +777,16 @@ Chat on WhatsApp
 
 </section>
 
-<!-- FOOTER -->
-
 <footer>
 
 © 2019 RCS TECH WORLD | All Rights Reserved
 
 </footer>
 
-<!-- WHATSAPP -->
-
 <a href="https://wa.me/918168411895"
 class="whatsapp">
 ☎
 </a>
-
-<!-- IMAGE ZOOM MODAL -->
-
-<div id="imageModal"
-class="image-modal">
-
-<span class="close-modal">
-✖
-</span>
-
-<img id="zoomedImage">
-
-</div>
-
-<!-- SCRIPT -->
 
 <script>
 
@@ -816,8 +794,6 @@ const sheetURL =
 "https://docs.google.com/spreadsheets/d/e/2PACX-1vTIHC0Ww4wCdi7Tx5Xqhye4ljZ5nsM849ghAxvdNMr2Fp3iV5pcO6HGA1oQeePNx4mJd8KALMIyrglx/pub?output=csv";
 
 let allProducts = [];
-
-/* LOAD PRODUCTS */
 
 function loadProducts(){
 
@@ -913,8 +889,6 @@ displayProducts(allProducts);
 
 }
 
-/* DISPLAY PRODUCTS */
-
 function displayProducts(products){
 
 let brandNewHTML = "";
@@ -954,6 +928,10 @@ ${product.model}
 🔥 ${product.stock}
 </div>
 
+<div class="warranty-box">
+🛡 ${product.warranty}
+</div>
+
 <table class="spec-table">
 
 <tr>
@@ -987,10 +965,6 @@ ${product.model}
 </tr>
 
 </table>
-
-<div class="warranty-box">
-🛡 ${product.warranty}
-</div>
 
 <ul class="feature-list">
 
@@ -1035,8 +1009,6 @@ document.getElementById("refurbished-products")
 .innerHTML = refurbishedHTML;
 
 }
-
-/* FILTER */
 
 function filterProducts(){
 
@@ -1089,45 +1061,6 @@ document.getElementById("searchInput")
 
 document.getElementById("warrantyFilter")
 .addEventListener("change",filterProducts);
-
-/* IMAGE ZOOM */
-
-document.addEventListener("click",function(e){
-
-if(e.target.matches(".product-card img")){
-
-document.getElementById("imageModal")
-.style.display = "flex";
-
-document.getElementById("zoomedImage")
-.src = e.target.src;
-
-}
-
-});
-
-/* CLOSE MODAL */
-
-document.querySelector(".close-modal")
-.addEventListener("click",function(){
-
-document.getElementById("imageModal")
-.style.display = "none";
-
-});
-
-/* CLOSE OUTSIDE */
-
-document.getElementById("imageModal")
-.addEventListener("click",function(e){
-
-if(e.target.id === "imageModal"){
-
-this.style.display = "none";
-
-}
-
-});
 
 loadProducts();
 
