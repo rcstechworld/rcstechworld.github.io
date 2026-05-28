@@ -10,7 +10,23 @@
 RCS TECH WORLD | Premium Refurbished & New Laptops
 </title>
 
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<meta name="description"
+content="Buy premium refurbished and new laptops, desktops and accessories from RCS TECH WORLD Delhi with warranty and pan India support.">
+
+<meta name="keywords"
+content="Refurbished laptops Delhi, Used laptops Uttam Nagar, Dell laptops, HP laptops, Lenovo laptops">
+
+<meta name="robots"
+content="index, follow">
+
+<link rel="canonical"
+href="https://rcstechworld.in">
+
+<link rel="preconnect"
+href="https://fonts.googleapis.com">
+
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap"
+rel="stylesheet">
 
 <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
 
@@ -45,6 +61,13 @@ z-index:1000;
 box-shadow:0 2px 15px rgba(0,0,0,0.08);
 }
 
+/* LOGO */
+
+.logo{
+display:flex;
+align-items:center;
+}
+
 .logo img{
 height:90px;
 width:auto;
@@ -69,6 +92,49 @@ transition:0.3s;
 
 nav ul li a:hover{
 color:#2563eb;
+}
+
+/* DROPDOWN */
+
+.dropdown{
+position:relative;
+}
+
+.dropdown-menu{
+position:absolute;
+top:100%;
+left:0;
+background:white;
+min-width:220px;
+border-radius:15px;
+padding:10px 0;
+box-shadow:0 10px 30px rgba(0,0,0,0.1);
+display:none;
+flex-direction:column;
+z-index:1000;
+}
+
+.dropdown-menu li{
+list-style:none;
+}
+
+.dropdown-menu li a{
+display:block;
+padding:14px 22px;
+font-size:16px;
+font-weight:600;
+color:#111827;
+text-decoration:none;
+transition:0.3s;
+}
+
+.dropdown-menu li a:hover{
+background:#eff6ff;
+color:#2563eb;
+}
+
+.dropdown:hover .dropdown-menu{
+display:flex;
 }
 
 /* HERO */
@@ -185,6 +251,50 @@ font-size:18px;
 outline:none;
 background:white;
 box-shadow:0 12px 30px rgba(0,0,0,0.05);
+transition:0.3s;
+}
+
+.search-box input:focus{
+border-color:#2563eb;
+}
+
+/* FILTER */
+
+.filter-wrapper{
+display:flex;
+justify-content:center;
+margin-top:25px;
+}
+
+.filter-inner{
+position:relative;
+width:100%;
+max-width:650px;
+}
+
+#warrantyFilter{
+width:100%;
+padding:20px 24px;
+border-radius:18px;
+border:2px solid #2563eb;
+background:white;
+font-size:18px;
+font-weight:700;
+color:#111827;
+outline:none;
+cursor:pointer;
+appearance:none;
+box-shadow:0 12px 30px rgba(37,99,235,0.12);
+}
+
+.filter-arrow{
+position:absolute;
+right:24px;
+top:50%;
+transform:translateY(-50%);
+pointer-events:none;
+font-size:22px;
+color:#2563eb;
 }
 
 /* PRODUCTS */
@@ -214,16 +324,12 @@ height:320px;
 object-fit:contain;
 background:#f1f5f9;
 padding:20px;
-transition:transform 0.5s ease;
+transition:0.4s;
 cursor:zoom-in;
 }
 
 .product-card:hover img{
-transform:scale(1.15);
-}
-
-.product-card img:active{
-transform:scale(1.25);
+transform:scale(1.08);
 }
 
 .condition-badge{
@@ -254,6 +360,7 @@ padding:30px;
 font-size:28px;
 line-height:1.5;
 margin-bottom:18px;
+min-height:90px;
 }
 
 .price{
@@ -270,6 +377,8 @@ font-weight:700;
 margin-bottom:20px;
 }
 
+/* WARRANTY */
+
 .warranty-box{
 display:inline-flex;
 align-items:center;
@@ -281,6 +390,24 @@ border-radius:14px;
 font-size:15px;
 font-weight:700;
 margin-bottom:18px;
+box-shadow:0 10px 25px rgba(37,99,235,0.25);
+animation:pulse 2s infinite;
+}
+
+@keyframes pulse{
+
+0%{
+transform:scale(1);
+}
+
+50%{
+transform:scale(1.04);
+}
+
+100%{
+transform:scale(1);
+}
+
 }
 
 .spec-table{
@@ -299,45 +426,77 @@ font-weight:700;
 width:45%;
 }
 
-/* IMAGE POPUP */
+.feature-list{
+padding-left:20px;
+line-height:2;
+margin-bottom:25px;
+color:#475569;
+}
 
-.image-popup{
+/* ABOUT */
+
+.about-box{
+background:white;
+padding:60px;
+border-radius:25px;
+box-shadow:0 8px 25px rgba(0,0,0,0.08);
+text-align:center;
+}
+
+.about-box p{
+font-size:20px;
+line-height:2;
+color:#475569;
+}
+
+/* CONTACT */
+
+.contact{
+background:#111827;
+color:white;
+border-radius:25px;
+padding:60px;
+text-align:center;
+}
+
+.contact h2{
+font-size:46px;
+margin-bottom:20px;
+}
+
+.contact p{
+margin-bottom:12px;
+color:#d1d5db;
+font-size:17px;
+}
+
+/* FOOTER */
+
+footer{
+background:#0f172a;
+color:#94a3b8;
+padding:25px;
+text-align:center;
+}
+
+/* WHATSAPP */
+
+.whatsapp{
 position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100%;
-background:rgba(0,0,0,0.92);
-display:none;
+bottom:25px;
+right:25px;
+background:#25d366;
+width:70px;
+height:70px;
+border-radius:50%;
+display:flex;
 justify-content:center;
 align-items:center;
-z-index:99999;
-padding:20px;
-cursor:zoom-out;
-}
-
-.image-popup img{
-max-width:95%;
-max-height:95%;
-border-radius:20px;
-background:white;
-padding:10px;
-object-fit:contain;
-animation:zoomIn 0.3s ease;
-}
-
-@keyframes zoomIn{
-
-from{
-transform:scale(0.7);
-opacity:0;
-}
-
-to{
-transform:scale(1);
-opacity:1;
-}
-
+color:white;
+font-size:34px;
+text-decoration:none;
+box-shadow:0 10px 25px rgba(0,0,0,0.25);
+z-index:999;
 }
 
 /* MOBILE */
@@ -384,17 +543,54 @@ grid-template-columns:1fr;
 
 <div class="logo">
 
-<img src="https://github.com/rcstechworld/rcstechworld.github.io/blob/main/images/logo.png?raw=true">
+<img src="https://github.com/rcstechworld/rcstechworld.github.io/blob/main/images/logo.png?raw=true"
+alt="RCS TECH WORLD Logo">
 
 </div>
 
 <ul>
 
-<li><a href="#">Home</a></li>
+<li>
+<a href="#">
+Home
+</a>
+</li>
 
-<li><a href="#products">Products</a></li>
+<li class="dropdown">
 
-<li><a href="#contact">Contact</a></li>
+<a href="#products">
+Products ▼
+</a>
+
+<ul class="dropdown-menu">
+
+<li>
+<a href="#brandnew-section">
+Brand New
+</a>
+</li>
+
+<li>
+<a href="#refurbished-section">
+Refurbished
+</a>
+</li>
+
+</ul>
+
+</li>
+
+<li>
+<a href="#about">
+About
+</a>
+</li>
+
+<li>
+<a href="#contact">
+Contact
+</a>
+</li>
 
 </ul>
 
@@ -407,22 +603,23 @@ grid-template-columns:1fr;
 <div class="hero-text">
 
 <h1>
-RCS TECH WORLD
-<br>
-<span>Premium Laptops</span>
+Premium <span>Brand New & Refurbished</span><br>
+Laptops & Desktops
 </h1>
 
 <p>
-Buy premium Brand New & Refurbished laptops with warranty and pan India support.
+Buy premium Dell, HP, Lenovo laptops and desktops with warranty and pan India support.
 </p>
 
 <div class="hero-btns">
 
-<a href="#products" class="btn primary">
+<a href="#products"
+class="btn primary">
 Shop Now
 </a>
 
-<a href="https://wa.me/918168411895" class="btn secondary">
+<a href="https://wa.me/918168411895"
+class="btn secondary">
 WhatsApp Us
 </a>
 
@@ -442,19 +639,102 @@ WhatsApp Us
 
 <section id="products">
 
-<h2 class="section-title">
-Our Products
-</h2>
-
 <div class="search-box">
 
 <input type="text"
 id="searchInput"
-placeholder="Search Dell, HP, Lenovo...">
+placeholder="Search Dell, HP, Lenovo, Laptop, Desktop">
+
+<div class="filter-wrapper">
+
+<div class="filter-inner">
+
+<select id="warrantyFilter">
+
+<option value="">
+🛡 All Warranty
+</option>
+
+<option value="1 months Warranty">
+🟢 1 Months Warranty
+</option>
+
+<option value="6 months Warranty">
+🔵 6 Months Warranty
+</option>
+
+<option value="1 years Warranty">
+🟣 1 Years Warranty
+</option>
+
+<option value="3 years Warranty">
+🔥 3 Years Warranty
+</option>
+
+</select>
+
+<div class="filter-arrow">
+⌄
+</div>
 
 </div>
 
-<div class="products" id="products-container">
+</div>
+
+</div>
+
+<!-- BRAND NEW -->
+
+<section id="brandnew-section">
+
+<h2 class="section-title">
+Brand New Laptops
+</h2>
+
+<div class="products"
+id="brandnew-products">
+</div>
+
+</section>
+
+<br><br><br>
+
+<!-- REFURBISHED -->
+
+<section id="refurbished-section">
+
+<h2 class="section-title">
+Refurbished Laptops
+</h2>
+
+<div class="products"
+id="refurbished-products">
+</div>
+
+</section>
+
+</section>
+
+<!-- ABOUT -->
+
+<section id="about">
+
+<h2 class="section-title">
+About Us
+</h2>
+
+<div class="about-box">
+
+<p>
+RCS TECH WORLD provides premium quality Brand New and Refurbished laptops, desktops and accessories with warranty and pan India support.
+</p>
+
+<br>
+
+<p>
+We deal in Dell, HP, Lenovo and business-class systems for students, professionals and businesses.
+</p>
+
 </div>
 
 </section>
@@ -463,92 +743,181 @@ placeholder="Search Dell, HP, Lenovo...">
 
 <section id="contact">
 
-<h2 class="section-title">
+<div class="contact">
+
+<h2>
 Contact Us
 </h2>
 
-<p style="text-align:center;font-size:20px;">
-📞 +91 8168411895
-<br><br>
+<p>
 RCS TECH WORLD
-<br>
-Uttam Nagar, New Delhi
 </p>
+
+<p>
+RR-2 Vipin Garden, Uttam Nagar,<br>
+New Delhi - 110059
+</p>
+
+<p>
+📞 +91 8168411895, 011-49933556
+</p>
+
+<p>
+🕒 Monday - Sunday : 10AM - 9PM
+</p>
+
+<br>
+
+<a href="https://wa.me/918168411895"
+class="btn primary">
+Chat on WhatsApp
+</a>
+
+</div>
 
 </section>
 
-<footer style="background:#0f172a;color:white;padding:25px;text-align:center;">
+<footer>
 
 © 2019 RCS TECH WORLD | All Rights Reserved
 
 </footer>
 
-<!-- IMAGE POPUP -->
-
-<div class="image-popup" id="imagePopup" onclick="closeImage()">
-
-<img id="popupImage">
-
-</div>
+<a href="https://wa.me/918168411895"
+class="whatsapp">
+☎
+</a>
 
 <script>
 
-const products = [
+const sheetURL =
+"https://docs.google.com/spreadsheets/d/e/2PACX-1vTIHC0Ww4wCdi7Tx5Xqhye4ljZ5nsM849ghAxvdNMr2Fp3iV5pcO6HGA1oQeePNx4mJd8KALMIyrglx/pub?output=csv";
 
-{
-brand:"Dell",
-model:"Latitude 7490",
-processor:"Intel i7",
-ram:"16GB",
-ssd:"512GB SSD",
-screen:"14 Inch",
-price:"28999",
-condition:"Refurbished",
-stock:"Only Few Left",
-warranty:"6 Months Warranty",
-image:"https://cdn.pixabay.com/photo/2014/05/02/21/50/laptop-336369_1280.jpg"
-},
+let allProducts = [];
 
-{
-brand:"HP",
-model:"EliteBook",
-processor:"Intel i5",
-ram:"8GB",
-ssd:"256GB SSD",
-screen:"14 Inch",
-price:"24999",
-condition:"Brand New",
-stock:"In Stock",
-warranty:"1 Year Warranty",
-image:"https://cdn.pixabay.com/photo/2015/01/21/14/14/apple-606761_1280.jpg"
+function loadProducts(){
+
+Papa.parse(sheetURL,{
+
+download:true,
+header:true,
+
+complete:function(results){
+
+const rows = results.data;
+
+allProducts = [];
+
+const uniqueSKU = new Set();
+
+rows.forEach(product=>{
+
+const sku =
+product.SKU ||
+product.sku ||
+"";
+
+if(sku && !uniqueSKU.has(sku)){
+
+uniqueSKU.add(sku);
+
+allProducts.push({
+
+condition:
+product.Condition ||
+"Refurbished",
+
+brand:
+product.Brand ||
+"",
+
+model:
+product.Model ||
+"",
+
+processor:
+product.Processor ||
+"",
+
+ram:
+product.RAM ||
+"",
+
+ssd:
+product["HDD/SSD"] ||
+"",
+
+screen:
+product.Screen ||
+"",
+
+price:
+product["Base Price"] ||
+product.Price ||
+"",
+
+sku:
+sku,
+
+image:
+product["Image URL"] ||
+"https://cdn.pixabay.com/photo/2014/05/02/21/50/laptop-336369_1280.jpg",
+
+os:
+product.OS ||
+"Windows Pro",
+
+warranty:
+product.Warranty ||
+"",
+
+stock:
+product.Stock ||
+"Only Few Left"
+
+});
+
 }
 
-];
+});
 
-function displayProducts(items){
+displayProducts(allProducts);
 
-let html = "";
+}
 
-items.forEach(product=>{
+});
 
-html += `
+}
+
+function displayProducts(products){
+
+let brandNewHTML = "";
+let refurbishedHTML = "";
+
+products.forEach(product=>{
+
+const card = `
 
 <div class="product-card">
 
-<div class="condition-badge ${product.condition === 'Brand New' ? 'brand-new' : 'refurbished'}">
+<div class="condition-badge ${
+product.condition.toLowerCase() === "brand new"
+? "brand-new"
+: "refurbished"
+}">
 
 ${product.condition}
 
 </div>
 
 <img src="${product.image}"
-alt="${product.brand}"
-onclick="openImage('${product.image}')">
+alt="${product.brand} ${product.model}">
 
 <div class="product-info">
 
 <h3>
-${product.brand} ${product.model}
+${product.brand}
+${product.model}
 </h3>
 
 <div class="price">
@@ -585,9 +954,27 @@ ${product.brand} ${product.model}
 <td>${product.screen}</td>
 </tr>
 
+<tr>
+<td>OS</td>
+<td>${product.os}</td>
+</tr>
+
+<tr>
+<td>SKU</td>
+<td>${product.sku}</td>
+</tr>
+
 </table>
 
-<a href="https://wa.me/918168411895"
+<ul class="feature-list">
+
+<li>Battery & Adapter Covered</li>
+
+<li>Pan India Support</li>
+
+</ul>
+
+<a href="https://wa.me/918168411895?text=Hello RCS TECH WORLD,%0A%0AI am interested in:%0A%0AProduct: ${product.brand} ${product.model}%0ASKU: ${product.sku}%0APrice: ₹${product.price}"
 class="btn primary">
 
 Enquire Now
@@ -600,49 +987,82 @@ Enquire Now
 
 `;
 
-});
+if(
+product.condition &&
+product.condition.toLowerCase() === "brand new"
+){
 
-document.getElementById("products-container").innerHTML = html;
+brandNewHTML += card;
+
+}else{
+
+refurbishedHTML += card;
 
 }
 
-displayProducts(products);
+});
 
-/* SEARCH */
+document.getElementById("brandnew-products")
+.innerHTML = brandNewHTML;
 
-document.getElementById("searchInput").addEventListener("keyup",function(){
+document.getElementById("refurbished-products")
+.innerHTML = refurbishedHTML;
 
-const value = this.value.toLowerCase();
+}
 
-const filtered = products.filter(product=>
+function filterProducts(){
 
-product.brand.toLowerCase().includes(value)
+const searchValue =
+document.getElementById("searchInput")
+.value.toLowerCase();
+
+const warrantyValue =
+document.getElementById("warrantyFilter")
+.value.toLowerCase();
+
+const filtered = allProducts.filter(product=>{
+
+const matchesSearch =
+
+(product.brand || "")
+.toLowerCase()
+.includes(searchValue)
 
 ||
 
-product.model.toLowerCase().includes(value)
+(product.model || "")
+.toLowerCase()
+.includes(searchValue)
 
-);
+||
 
-displayProducts(filtered);
+(product.processor || "")
+.toLowerCase()
+.includes(searchValue);
+
+const matchesWarranty =
+
+!warrantyValue ||
+
+(product.warranty || "")
+.toLowerCase()
+.includes(warrantyValue);
+
+return matchesSearch && matchesWarranty;
 
 });
 
-/* IMAGE ZOOM */
-
-function openImage(imageSrc){
-
-document.getElementById("imagePopup").style.display = "flex";
-
-document.getElementById("popupImage").src = imageSrc;
+displayProducts(filtered);
 
 }
 
-function closeImage(){
+document.getElementById("searchInput")
+.addEventListener("keyup",filterProducts);
 
-document.getElementById("imagePopup").style.display = "none";
+document.getElementById("warrantyFilter")
+.addEventListener("change",filterProducts);
 
-}
+loadProducts();
 
 </script>
 
