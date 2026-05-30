@@ -601,6 +601,8 @@ display:flex;
 justify-content:center;
 align-items:center;
 box-shadow:none;
+user-select:none;
+-webkit-user-drag:none;
 }
 
 .modal-content img{
@@ -1262,26 +1264,76 @@ this.style.display = "none";
 
 });
 let zoomed = false;
+let isDragging = false;
+let startX = 0;
+let startY = 0;
+let translateX = 0;
+let translateY = 0;
 
-document.getElementById("modalImage")
-.addEventListener("click", function(){
+const modalImg =
+document.getElementById("modalImage");
+
+modalImg.addEventListener("click", function(){
 
 if(!zoomed){
 
-this.style.transform = "scale(2)";
-this.style.cursor = "zoom-out";
+this.style.transform =
+`scale(2) translate(${translateX}px, ${translateY}px)`;
+
+this.style.cursor = "grab";
+
 zoomed = true;
 
 }else{
 
+translateX = 0;
+translateY = 0;
+
 this.style.transform = "scale(1)";
 this.style.cursor = "zoom-in";
+
 zoomed = false;
 
 }
 
 });
 
+modalImg.addEventListener("mousedown", function(e){
+
+if(!zoomed) return;
+
+isDragging = true;
+
+startX = e.clientX - translateX;
+startY = e.clientY - translateY;
+
+this.style.cursor = "grabbing";
+
+});
+
+document.addEventListener("mousemove", function(e){
+
+if(!isDragging || !zoomed) return;
+
+translateX = e.clientX - startX;
+translateY = e.clientY - startY;
+
+modalImg.style.transform =
+`scale(2) translate(${translateX}px, ${translateY}px)`;
+
+});
+
+document.addEventListener("mouseup", function(){
+
+isDragging = false;
+
+if(zoomed){
+
+modalImg.style.cursor = "grab";
+
+}
+
+});
 </script>
 
 </body>
