@@ -1016,7 +1016,14 @@ sku:
 sku,
 
 image:
-product["Image URL"] ||
+(product["Image URL"] || "")
+.replace(
+"https://github.com/",
+"https://raw.githubusercontent.com/"
+)
+.replace("/blob/","/")
+.replace("?raw=true","")
+||
 "https://cdn.pixabay.com/photo/2014/05/02/21/50/laptop-336369_1280.jpg",
 
 os:
