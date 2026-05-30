@@ -79,7 +79,17 @@ box-shadow:0 2px 15px rgba(0,0,0,0.08);
 .logo{
 display:flex;
 align-items:center;
-gap:18px;
+gap:16px;
+}
+
+.logo img{
+height:90px;
+width:auto;
+}
+
+.logo-text{
+display:flex;
+align-items:center;
 }
 
 .logo img{
@@ -96,23 +106,27 @@ justify-content:center;
 }
 
 .brand-title{
-font-size:36px;
+font-size:52px;
 font-weight:900;
-line-height:1;
 margin:0;
+line-height:1;
+letter-spacing:2px;
+text-transform:uppercase;
 
+/* Logo ke color jaisa gradient */
 background:linear-gradient(
 90deg,
-#2563eb,
-#1d4ed8,
-#38bdf8
+#72d4e5,
+#5bc8df,
+#4ab8d8,
+#4d8fd8,
+#4b6ed8
 );
 
 -webkit-background-clip:text;
 -webkit-text-fill-color:transparent;
 
-letter-spacing:1px;
-text-transform:uppercase;
+text-shadow:0 3px 10px rgba(59,130,246,0.15);
 }
 
 .logo-text p{
@@ -559,32 +573,21 @@ z-index:999;
 
 /* MOBILE */
 
-@media(max-width:768px)
-.logo{
-flex-direction:column;
-text-align:center;
-gap:8px;
-}
+
+@media(max-width:768px){
 
 .brand-title{
-font-size:24px;
+font-size:32px;
 }
 
-.logo-text p{
-font-size:11px;
-}{
-
-.hero-text h1{
-font-size:42px;
-}
-
-nav{
-flex-direction:column;
-gap:20px;
+.logo{
+gap:10px;
 }
 
 .logo img{
 height:65px;
+}
+
 }
 
 nav ul{
@@ -615,17 +618,13 @@ grid-template-columns:1fr;
 <div class="logo">
 
 <img src="https://raw.githubusercontent.com/rcstechworld/rcstechworld.github.io/main/images/logo.png"
-alt="RCS TECH WORLD Logo">
+alt="RCS Logo">
 
 <div class="logo-text">
 
 <h1 class="brand-title">
-RCS TECH WORLD
+TECH WORLD
 </h1>
-
-<p>
-Premium New & Refurbished Laptops
-</p>
 
 </div>
 
