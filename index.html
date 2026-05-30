@@ -79,6 +79,7 @@ box-shadow:0 2px 15px rgba(0,0,0,0.08);
 .logo{
 display:flex;
 align-items:center;
+gap:18px;
 }
 
 .logo img{
@@ -86,6 +87,39 @@ height:90px;
 width:auto;
 object-fit:contain;
 display:block;
+}
+
+.logo-text{
+display:flex;
+flex-direction:column;
+justify-content:center;
+}
+
+.brand-title{
+font-size:36px;
+font-weight:900;
+line-height:1;
+margin:0;
+
+background:linear-gradient(
+90deg,
+#2563eb,
+#1d4ed8,
+#38bdf8
+);
+
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+
+letter-spacing:1px;
+text-transform:uppercase;
+}
+
+.logo-text p{
+font-size:13px;
+font-weight:600;
+color:#64748b;
+margin-top:4px;
 }
 
 nav ul{
@@ -324,17 +358,22 @@ grid-template-columns:repeat(auto-fit,minmax(360px,1fr));
 gap:35px;
 }
 
-.product-card{
-background:white;
-border-radius:25px;
+.product-image{
 overflow:hidden;
-box-shadow:0 8px 25px rgba(0,0,0,0.08);
-transition:0.4s;
-position:relative;
+background:#f8fafc;
 }
 
-.product-card:hover{
-transform:translateY(-10px);
+.product-image img{
+width:100%;
+height:320px;
+object-fit:contain;
+padding:20px;
+transition:transform 0.5s ease;
+cursor:zoom-in;
+}
+
+.product-card:hover .product-image img{
+transform:scale(1.15);
 }
 
 .product-card img{
@@ -520,7 +559,20 @@ z-index:999;
 
 /* MOBILE */
 
-@media(max-width:768px){
+@media(max-width:768px)
+.logo{
+flex-direction:column;
+text-align:center;
+gap:8px;
+}
+
+.brand-title{
+font-size:24px;
+}
+
+.logo-text p{
+font-size:11px;
+}{
 
 .hero-text h1{
 font-size:42px;
@@ -562,10 +614,23 @@ grid-template-columns:1fr;
 
 <div class="logo">
 
-<img src="https://github.com/rcstechworld/rcstechworld.github.io/blob/main/images/logo.png?raw=true"
+<img src="https://raw.githubusercontent.com/rcstechworld/rcstechworld.github.io/main/images/logo.png"
 alt="RCS TECH WORLD Logo">
 
+<div class="logo-text">
+
+<h1 class="brand-title">
+RCS TECH WORLD
+</h1>
+
+<p>
+Premium New & Refurbished Laptops
+</p>
+
 </div>
+
+</div>
+
 
 <ul>
 
@@ -578,7 +643,7 @@ Home
 <li class="dropdown">
 
 <a href="#products">
-Products ▼
+Products
 </a>
 
 <ul class="dropdown-menu">
@@ -929,8 +994,12 @@ ${product.condition}
 
 </div>
 
+<div class="product-image">
+
 <img src="${product.image}"
 alt="${product.brand} ${product.model}">
+
+</div>
 
 <div class="product-info">
 
