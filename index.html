@@ -79,12 +79,18 @@ box-shadow:0 2px 15px rgba(0,0,0,0.08);
 .logo{
 display:flex;
 align-items:center;
-gap:16px;
+gap:20px;
+}
+
+.logo-text{
+display:flex;
+align-items:center;
 }
 
 .logo img{
-height:90px;
+height:120px;
 width:auto;
+object-fit:contain;
 }
 
 .logo-text{
@@ -106,14 +112,13 @@ justify-content:center;
 }
 
 .brand-title{
-font-size:52px;
+font-size:78px;
 font-weight:900;
-margin:0;
 line-height:1;
+margin:0;
 letter-spacing:2px;
 text-transform:uppercase;
 
-/* Logo ke color jaisa gradient */
 background:linear-gradient(
 90deg,
 #72d4e5,
@@ -125,8 +130,6 @@ background:linear-gradient(
 
 -webkit-background-clip:text;
 -webkit-text-fill-color:transparent;
-
-text-shadow:0 3px 10px rgba(59,130,246,0.15);
 }
 
 .logo-text p{
