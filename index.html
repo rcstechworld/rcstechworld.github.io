@@ -583,33 +583,48 @@ z-index:999;
 /* MOBILE */
 
 
-@media(max-width:768px){
+@media (max-width: 768px){
 
-.brand-title{
-font-size:32px;
+nav{
+flex-direction:column;
+padding:12px 15px;
+gap:15px;
 }
 
 .logo{
-gap:10px;
+display:flex;
+flex-direction:column;
+align-items:center;
+text-align:center;
+gap:5px;
 }
 
 .logo img{
 height:65px;
+width:auto;
 }
 
+.logo-text{
+display:block;
+}
+
+.brand-title{
+font-size:24px;
+white-space:nowrap;
+line-height:1.1;
 }
 
 nav ul{
+display:flex;
 flex-wrap:wrap;
 justify-content:center;
+gap:15px;
+padding:0;
+margin:0;
 }
 
-.section-title{
-font-size:38px;
-}
-
-.products{
-grid-template-columns:1fr;
+nav ul li a{
+font-size:16px;
 }
 
 }
