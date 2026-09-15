@@ -323,7 +323,7 @@ footer{border-top:1px solid #1e2b3e;padding:28px 4.5%;text-align:center;color:#7
 </div>
 
 <script>
-const sheetURL = "https://docs.google.com/spreadsheets/d/14ua41csOgUu1L4E4xpARStGE2jYS7R7Ou4-B_-vcE0Q/export?format=csv&gid=1219167963";
+const sheetURL = "https://docs.google.com/spreadsheets/d/14ua41csOgUu1L4E4xpARStGE2jYS7R7Ou4-B_-vcE0Q/gviz/tq?tqx=out:csv&gid=1219167963";
 let allProducts = [];
 let selectedWarranty = "";
 let selectedCondition = "";
@@ -341,7 +341,9 @@ function esc(value) {
 }
 
 function loadProducts() {
-  Papa.parse(sheetURL, {
+  const freshURL = sheetURL + "&cache=" + Date.now();
+
+  Papa.parse(freshURL, {
     download:true,
     header:true,
     skipEmptyLines:true,
