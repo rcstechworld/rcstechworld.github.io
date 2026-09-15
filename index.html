@@ -279,7 +279,7 @@ footer{border-top:1px solid #1e2b3e;padding:28px 4.5%;text-align:center;color:#7
       </div>
     </div>
 
-    <div id="productCount" class="count">Loading live stock...</div>
+    <div style="display:flex;align-items:center;justify-content:space-between;gap:15px;flex-wrap:wrap"><div id="productCount" class="count">Loading live stock...</div><button id="refreshStock" class="filter-btn" type="button">↻ Refresh Stock</button></div>
 
     <div class="products" id="all-products">
       <div class="loading">Loading live stock from Google Sheet…</div>
@@ -323,7 +323,7 @@ footer{border-top:1px solid #1e2b3e;padding:28px 4.5%;text-align:center;color:#7
 </div>
 
 <script>
-const sheetURL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTIHC0Ww4wCdi7Tx5Xqhye4ljZ5nsM849ghAxvdNMr2Fp3iV5pcO6HGA1oQeePNx4mJd8KALMIyrglx/pub?output=csv";
+const sheetURL = "https://docs.google.com/spreadsheets/d/14ua41csOgUu1L4E4xpARStGE2jYS7R7Ou4-B_-vcE0Q/export?format=csv&gid=1219167963";
 let allProducts = [];
 let selectedWarranty = "";
 let selectedCondition = "";
@@ -466,6 +466,7 @@ function filterProducts() {
 }
 
 document.getElementById("searchInput").addEventListener("input", filterProducts);
+document.getElementById("refreshStock").addEventListener("click", loadProducts);
 
 document.querySelectorAll("[data-warranty]").forEach(button => {
   button.addEventListener("click", () => {
@@ -517,6 +518,9 @@ document.getElementById("modalImage").addEventListener("click", function() {
 });
 
 loadProducts();
+
+// Automatically check the Google Sheet every 2 minutes
+setInterval(loadProducts, 120000);
 </script>
 
 <!-- Tawk.to -->
@@ -534,5 +538,3 @@ s0.parentNode.insertBefore(s1,s0);
 
 </body>
 </html>
-
-
