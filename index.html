@@ -322,11 +322,36 @@ footer{border-top:1px solid #1e2b3e;padding:28px 4.5%;text-align:center;color:#7
   <img id="modalImage" src="" alt="Product Image">
 </div>
 
-const SHEET_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTIHC0Ww4wCdi7Tx5Xqhye4ljZ5nsM849ghAxvdNMr2Fp3iV5pcO6HGA1oQeePNx4mJd8KALMIyrglx/pub?gid=1219167963&single=true&output=csv";
+<script>
+const SHEET_URL =
+  "https://docs.google.com/spreadsheets/d/e/2PACX-1vTIHC0Ww4wCdi7Tx5Xqhye4ljZ5nsM849ghAxvdNMr2Fp3iV5pcO6HGA1oQeePNx4mJd8KALMIyrglx/pub?gid=1219167963&single=true&output=csv";
+
+let allProducts = [];
+let selectedWarranty = "";
+let selectedCondition = "";
+
+function normalizeImage(url) {
+  return (url || "")
+    .trim()
+    .replace("https://github.com/", "https://raw.githubusercontent.com/")
+    .replace("/blob/", "/")
+    .replace("?raw=true", "")
+    || "https://cdn.pixabay.com/photo/2014/05/02/21/50/laptop-336369_1280.jpg";
+}
+
+function esc(value) {
+  return String(value ?? "").replace(/[&<>"']/g, c => ({
+    "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;", "'":"&#039;"
+  }[c]));
+}
 
 function loadProducts() {
-  // Cache-busting: Google Sheet se fresh data request
   const freshURL = SHEET_URL + "&cache=" + Date.now();
+  const countEl = document.getElementById("productCount");
+  const container = document.getElementById("all-products");
+
+  if (countEl) countEl.textContent = "Loading live stock...";
+  if (container) container.innerHTML = '<div class="loading">Loading live stock from Google Sheet…</div>';
 
   Papa.parse(freshURL, {
     download: true,
@@ -334,31 +359,31 @@ function loadProducts() {
     skipEmptyLines: true,
 
     complete: function(results) {
+      console.log("Google Sheet Data:", results.data);
+
       const rows = results.data || [];
       allProducts = [];
       const uniqueSKU = new Set();
 
       rows.forEach(product => {
-        const sku = product.SKU || product.sku || "";
-
+        const sku = String(product.SKU || product.sku || "").trim();
         if (!sku || uniqueSKU.has(sku)) return;
-
         uniqueSKU.add(sku);
 
         allProducts.push({
-          condition: product.Condition || "Refurbished",
-          brand: product.Brand || "",
-          model: product.Model || "",
-          processor: product.Processor || "",
-          ram: product.RAM || "",
-          ssd: product["HDD/SSD"] || "",
-          screen: product.Screen || "",
-          price: product["Base Price"] || product.Price || "",
+          condition: String(product.Condition || "Refurbished").trim(),
+          brand: String(product.Brand || "").trim(),
+          model: String(product.Model || "").trim(),
+          processor: String(product.Processor || "").trim(),
+          ram: String(product.RAM || "").trim(),
+          ssd: String(product["HDD/SSD"] || "").trim(),
+          screen: String(product.Screen || "").trim(),
+          price: String(product["Base Price"] || product.Price || "").trim(),
           sku: sku,
           image: normalizeImage(product["Image URL"]),
-          os: product.OS || "Windows Pro",
-          warranty: product.Warranty || "",
-          stock: product.Stock || "Only Few Left"
+          os: String(product.OS || "Windows Pro").trim(),
+          warranty: String(product.Warranty || "").trim(),
+          stock: String(product.Stock || "Only Few Left").trim()
         });
       });
 
@@ -366,19 +391,157 @@ function loadProducts() {
     },
 
     error: function(error) {
-      document.getElementById("all-products").innerHTML =
-        '<div class="empty">Unable to load live stock right now. Please contact RCS TECH WORLD on WhatsApp.</div>';
-
-      document.getElementById("productCount").textContent =
-        "Stock unavailable";
-
       console.error("Google Sheet Error:", error);
+
+      if (container) {
+        container.innerHTML = '<div class="empty">Unable to load live stock right now. Please contact RCS TECH WORLD on WhatsApp.</div>';
+      }
+      if (countEl) countEl.textContent = "Stock unavailable";
     }
   });
 }
 
-// Google Sheet every 30 seconds
-setInterval(loadProducts, 30000);
+function displayProducts(products) {
+  const container = document.getElementById("all-products");
+  if (!container) return;
+
+  if (!products.length) {
+    container.innerHTML = '<div class="empty">No products found for the selected filters.</div>';
+    document.getElementById("productCount").textContent = "0 devices found";
+    return;
+  }
+
+  container.innerHTML = products.map(product => {
+    const isNew = (product.condition || "").toLowerCase() === "brand new";
+    const message = encodeURIComponent(
+      "Hello RCS TECH WORLD,\n\nI am interested in:\n\n" +
+      "Product: " + product.brand + " " + product.model + "\n" +
+      "SKU: " + product.sku + "\n" +
+      "Price: ₹" + product.price
+    );
+
+    return `
+      <article class="product-card">
+        <div class="product-top">
+          <div class="condition-badge ${isNew ? "brand-new" : "refurbished"}">${esc(product.condition)}</div>
+          <button class="zoom-btn" type="button" aria-label="Zoom image" data-image="${esc(product.image)}">⌕</button>
+          <div class="product-image">
+            <img src="${esc(product.image)}"
+                 alt="${esc(product.brand + " " + product.model)}"
+                 loading="lazy"
+                 onerror="this.onerror=null;this.src='https://cdn.pixabay.com/photo/2014/05/02/21/50/laptop-336369_1280.jpg';">
+          </div>
+        </div>
+
+        <div class="product-info">
+          <h3>${esc(product.brand)} ${esc(product.model)}</h3>
+          <div class="price">₹${esc(product.price)}</div>
+          <div class="stock">🔥 ${esc(product.stock)}</div>
+          <div class="warranty-box">🛡 ${esc(product.warranty)}</div>
+
+          <table class="spec-table">
+            <tr><td>Processor</td><td>${esc(product.processor)}</td></tr>
+            <tr><td>RAM</td><td>${esc(product.ram)}</td></tr>
+            <tr><td>Storage</td><td>${esc(product.ssd)}</td></tr>
+            <tr><td>Screen</td><td>${esc(product.screen)}</td></tr>
+            <tr><td>OS</td><td>${esc(product.os)}</td></tr>
+            <tr><td>SKU</td><td>${esc(product.sku)}</td></tr>
+          </table>
+
+          <ul class="feature-list">
+            <li>Battery & Adapter Covered</li>
+            <li>Pan India Support</li>
+          </ul>
+
+          <a class="btn buy-btn" href="https://wa.me/918168411895?text=${message}" target="_blank" rel="noopener">Buy Now</a>
+        </div>
+      </article>
+    `;
+  }).join("");
+
+  document.getElementById("productCount").textContent =
+    products.length + (products.length === 1 ? " device found" : " devices found");
+}
+
+function filterProducts() {
+  const searchInput = document.getElementById("searchInput");
+  const searchValue = searchInput ? searchInput.value.toLowerCase().trim() : "";
+
+  const filtered = allProducts.filter(product => {
+    const haystack = [
+      product.brand, product.model, product.processor, product.ram,
+      product.ssd, product.screen, product.sku, product.os
+    ].join(" ").toLowerCase();
+
+    const warranty = (product.warranty || "").toLowerCase();
+    const matchesSearch = !searchValue || haystack.includes(searchValue);
+    const matchesWarranty = !selectedWarranty || warranty.includes(selectedWarranty);
+    const matchesCondition = !selectedCondition ||
+      (product.condition || "").toLowerCase() === selectedCondition;
+
+    return matchesSearch && matchesWarranty && matchesCondition;
+  });
+
+  displayProducts(filtered);
+}
+
+function openModal(src) {
+  const modal = document.getElementById("imageModal");
+  const img = document.getElementById("modalImage");
+  img.src = src;
+  img.style.transform = "scale(1)";
+  img.style.cursor = "zoom-in";
+  modal.style.display = "flex";
+}
+
+document.addEventListener("DOMContentLoaded", function() {
+  document.getElementById("searchInput").addEventListener("input", filterProducts);
+  document.getElementById("refreshStock").addEventListener("click", loadProducts);
+
+  document.querySelectorAll("[data-warranty]").forEach(button => {
+    button.addEventListener("click", () => {
+      selectedWarranty = button.dataset.warranty.toLowerCase();
+      document.querySelectorAll("[data-warranty]").forEach(b => b.classList.remove("active"));
+      button.classList.add("active");
+      filterProducts();
+    });
+  });
+
+  document.querySelectorAll("[data-condition]").forEach(button => {
+    button.addEventListener("click", () => {
+      selectedCondition = button.dataset.condition.toLowerCase();
+      document.querySelectorAll("[data-condition]").forEach(b => b.classList.remove("active"));
+      button.classList.add("active");
+      filterProducts();
+    });
+  });
+
+  document.addEventListener("click", function(e) {
+    const productImg = e.target.closest(".product-image img");
+    const zoomButton = e.target.closest(".zoom-btn");
+    if (productImg) openModal(productImg.src);
+    if (zoomButton) openModal(zoomButton.dataset.image);
+  });
+
+  document.querySelector(".close-modal").addEventListener("click", () => {
+    document.getElementById("imageModal").style.display = "none";
+  });
+
+  document.getElementById("imageModal").addEventListener("click", function(e) {
+    if (e.target === this) this.style.display = "none";
+  });
+
+  let zoomed = false;
+  document.getElementById("modalImage").addEventListener("click", function() {
+    zoomed = !zoomed;
+    this.style.transform = zoomed ? "scale(2)" : "scale(1)";
+    this.style.cursor = zoomed ? "grab" : "zoom-in";
+  });
+
+  loadProducts();
+  setInterval(loadProducts, 30000);
+});
+</script>
 
 <!-- Tawk.to -->
 <script type="text/javascript">
