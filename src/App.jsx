@@ -16,7 +16,7 @@ const img = (url) =>
 
 const val = (value) => String(value ?? "").trim();
 
-function Card({ p, onZoom }) {
+function Card({ p, onZoom, onEnquire }) {
   const msg = encodeURIComponent(
     `Hello RCS TECH WORLD,\n\nI am interested in:\n\nProduct: ${p.brand} ${p.model}\nSKU: ${p.sku}\nPrice: ₹${p.price}`
   );
@@ -44,7 +44,16 @@ function Card({ p, onZoom }) {
           ⌕
         </button>
 
-        <div className="product-image">
+        <div
+          className="product-image"
+          role="button"
+          tabIndex={0}
+          onClick={() => onZoom(p.image)}
+          onKeyDown={(e) => {
+            if (e.key === "Enter" || e.key === " ") onZoom(p.image);
+          }}
+          title="Click to zoom"
+        >
           <img
             src={p.image}
             alt={`${p.brand} ${p.model}`}
@@ -58,9 +67,7 @@ function Card({ p, onZoom }) {
       </div>
 
       <div className="product-info">
-        <h3>
-          {p.brand} {p.model}
-        </h3>
+        <h3>{p.brand} {p.model}</h3>
 
         <div className="price">₹{p.price || "Contact for price"}</div>
 
@@ -72,30 +79,12 @@ function Card({ p, onZoom }) {
 
         <table className="spec-table">
           <tbody>
-            <tr>
-              <td>Processor</td>
-              <td>{p.processor || "—"}</td>
-            </tr>
-            <tr>
-              <td>RAM</td>
-              <td>{p.ram || "—"}</td>
-            </tr>
-            <tr>
-              <td>Storage</td>
-              <td>{p.ssd || "—"}</td>
-            </tr>
-            <tr>
-              <td>Screen</td>
-              <td>{p.screen || "—"}</td>
-            </tr>
-            <tr>
-              <td>OS</td>
-              <td>{p.os || "—"}</td>
-            </tr>
-            <tr>
-              <td>SKU</td>
-              <td>{p.sku}</td>
-            </tr>
+            <tr><td>Processor</td><td>{p.processor || "—"}</td></tr>
+            <tr><td>RAM</td><td>{p.ram || "—"}</td></tr>
+            <tr><td>Storage</td><td>{p.ssd || "—"}</td></tr>
+            <tr><td>Screen</td><td>{p.screen || "—"}</td></tr>
+            <tr><td>OS</td><td>{p.os || "—"}</td></tr>
+            <tr><td>SKU</td><td>{p.sku}</td></tr>
           </tbody>
         </table>
 
@@ -104,14 +93,24 @@ function Card({ p, onZoom }) {
           <li>Pan India Support</li>
         </ul>
 
-        <a
-          className="btn buy-btn"
-          href={`https://wa.me/918168411895?text=${msg}`}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Buy Now
-        </a>
+        <div className="product-actions">
+          <button
+            className="btn enquire-btn"
+            type="button"
+            onClick={() => onEnquire(p)}
+          >
+            Enquire
+          </button>
+
+          <a
+            className="btn buy-btn"
+            href={`https://wa.me/918168411895?text=${msg}`}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Buy Now
+          </a>
+        </div>
       </div>
     </article>
   );
@@ -125,72 +124,126 @@ export default function App() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
   const [updated, setUpdated] = useState(null);
+
   const [modal, setModal] = useState("");
+  const [zoom, setZoom] = useState(1);
 
-  const load = () => {
-  setLoading(true);
-  setError("");
+  // Load Tawk.to once.
+  useEffect(() => {
+    window.Tawk_API = window.Tawk_API || {};
+    window.Tawk_LoadStart = new Date();
 
-  const freshURL = `${SHEET_URL}&cache=${Date.now()}`;
+    const existingScript = document.querySelector(
+      'script[src*="embed.tawk.to/5cece1a32135900bac12ccc2"]'
+    );
 
-  Papa.parse(freshURL, {
-    download: true,
-    header: true,
-    skipEmptyLines: true,
+    if (existingScript) return;
 
-    complete: (results) => {
-      console.log("Google Sheet Data:", results.data);
-      console.log("Google Sheet Headers:", results.meta.fields);
+    const script = document.createElement("script");
+    script.async = true;
+    script.src =
+      "https://embed.tawk.to/5cece1a32135900bac12ccc2/default";
+    script.charset = "UTF-8";
+    script.setAttribute("crossorigin", "*");
 
-      const seen = new Set();
+    document.body.appendChild(script);
+  }, []);
 
-      const data = (results.data || [])
-        .map((p) => ({
-          condition: val(p.Condition) || "Refurbished",
-          brand: val(p.Brand),
-          model: val(p.Model),
-          processor: val(p.Processor),
-          ram: val(p.RAM),
-          ssd: val(p["HDD/SSD"]),
-          screen: val(p.Screen),
-          price: val(p["Base Price"]) || val(p.Price),
-          sku: val(p.SKU) || val(p.sku),
+  const openTawk = (product = null) => {
+    const message = product
+      ? `Hello, I am interested in ${product.brand} ${product.model} (SKU: ${product.sku}).`
+      : "";
 
-          image:
-            img(p["Image URL"]),
-
-          os: val(p.OS) || "Windows Pro",
-          warranty: val(p.Warranty),
-          stock: val(p.Stock) || "Only Few Left",
-        }))
-        .filter((p) => {
-          if (!p.sku || seen.has(p.sku)) return false;
-
-          seen.add(p.sku);
-          return true;
-        });
-
-      setProducts(data);
-      setUpdated(new Date());
-      setLoading(false);
-
-      if (!data.length) {
-        setError(
-          "Google Sheet loaded, but no products with SKU were found."
+    // If Tawk has loaded, open the chat immediately.
+    if (window.Tawk_API) {
+      if (message && typeof window.Tawk_API.setAttributes === "function") {
+        window.Tawk_API.setAttributes(
+          {
+            product: `${product.brand} ${product.model}`,
+            sku: product.sku,
+          },
+          function () {}
         );
       }
-    },
 
-    error: (error) => {
-      console.error("Google Sheet Error:", error);
+      if (typeof window.Tawk_API.maximize === "function") {
+        window.Tawk_API.maximize();
+        return;
+      }
 
-      setLoading(false);
-      setError(
-        "Unable to load live stock from Google Sheet."
-      );
-    },
-  });
-};
+      if (typeof window.Tawk_API.toggle === "function") {
+        window.Tawk_API.toggle();
+        return;
+      }
+    }
+
+    // Tawk can still be loading when the user clicks.
+    // Give it a moment and then open it.
+    setTimeout(() => {
+      if (window.Tawk_API?.maximize) {
+        window.Tawk_API.maximize();
+      } else if (window.Tawk_API?.toggle) {
+        window.Tawk_API.toggle();
+      }
+    }, 1000);
+  };
+
+  const load = () => {
+    setLoading(true);
+    setError("");
+
+    const freshURL = `${SHEET_URL}&cache=${Date.now()}`;
+
+    Papa.parse(freshURL, {
+      download: true,
+      header: true,
+      skipEmptyLines: true,
+
+      complete: (results) => {
+        console.log("Google Sheet Data:", results.data);
+        console.log("Google Sheet Headers:", results.meta.fields);
+
+        const seen = new Set();
+
+        const data = (results.data || [])
+          .map((p) => ({
+            condition: val(p.Condition) || "Refurbished",
+            brand: val(p.Brand),
+            model: val(p.Model),
+            processor: val(p.Processor),
+            ram: val(p.RAM),
+            ssd: val(p["HDD/SSD"]),
+            screen: val(p.Screen),
+            price: val(p["Base Price"]) || val(p.Price),
+            sku: val(p.SKU) || val(p.sku),
+            image: img(p["Image URL"]),
+            os: val(p.OS) || "Windows Pro",
+            warranty: val(p.Warranty),
+            stock: val(p.Stock) || "Only Few Left",
+          }))
+          .filter((p) => {
+            if (!p.sku || seen.has(p.sku)) return false;
+
+            seen.add(p.sku);
+            return true;
+          });
+
+        setProducts(data);
+        setUpdated(new Date());
+        setLoading(false);
+
+        if (!data.length) {
+          setError("Google Sheet loaded, but no products with SKU were found.");
+        }
+      },
+
+      error: (error) => {
+        console.error("Google Sheet Error:", error);
+        setLoading(false);
+        setError("Unable to load live stock from Google Sheet.");
+      },
+    });
+  };
 
   useEffect(() => {
     load();
@@ -200,7 +253,7 @@ export default function App() {
     return () => clearInterval(timer);
   }, []);
 
-    const filtered = useMemo(() => {
+  const filtered = useMemo(() => {
     const q = search.toLowerCase().trim();
 
     return products.filter((p) => {
@@ -244,11 +297,22 @@ export default function App() {
     });
   }, [products, search, warranty, condition]);
 
+  const openImage = (src) => {
+    setModal(src);
+    setZoom(1);
+  };
+
+  const closeImage = () => {
+    setModal("");
+    setZoom(1);
+  };
+
   return (
     <>
       <nav>
         <div className="logo-wrap">
           <div className="logo-mark">RCS</div>
+
           <div>
             <div className="logo-title">RCS TECH WORLD</div>
             <div className="logo-sub">LAPTOPS · DESKTOPS · UPGRADES</div>
@@ -259,14 +323,14 @@ export default function App() {
           <a href="#products">Products</a>
           <a href="#contact">Contact</a>
           <a href="tel:+918168411895">+91 8168411895</a>
-          <a
+
+          <button
             className="enquire"
-            href="https://wa.me/918168411895"
-            target="_blank"
-            rel="noopener noreferrer"
+            type="button"
+            onClick={() => openTawk()}
           >
-            ◯&nbsp; Enquire
-          </a>
+            ●&nbsp; Enquire
+          </button>
         </div>
       </nav>
 
@@ -293,14 +357,13 @@ export default function App() {
                 View Available Stock
               </a>
 
-              <a
+              <button
                 className="btn btn-secondary"
-                href="https://wa.me/918168411895"
-                target="_blank"
-                rel="noopener noreferrer"
+                type="button"
+                onClick={() => openTawk()}
               >
-                WhatsApp Us
-              </a>
+                Enquire Now
+              </button>
             </div>
           </div>
 
@@ -344,9 +407,7 @@ export default function App() {
               ].map(([value, label]) => (
                 <button
                   key={label}
-                  className={`filter-btn ${
-                    warranty === value ? "active" : ""
-                  }`}
+                  className={`filter-btn ${warranty === value ? "active" : ""}`}
                   onClick={() => setWarranty(value)}
                 >
                   {label}
@@ -364,9 +425,7 @@ export default function App() {
               ].map(([value, label]) => (
                 <button
                   key={label}
-                  className={`filter-btn ${
-                    condition === value ? "active" : ""
-                  }`}
+                  className={`filter-btn ${condition === value ? "active" : ""}`}
                   onClick={() => setCondition(value)}
                 >
                   {label}
@@ -415,7 +474,12 @@ export default function App() {
             {!loading &&
               !error &&
               filtered.map((p) => (
-                <Card key={p.sku} p={p} onZoom={setModal} />
+                <Card
+                  key={p.sku}
+                  p={p}
+                  onZoom={openImage}
+                  onEnquire={openTawk}
+                />
               ))}
           </div>
         </div>
@@ -456,51 +520,84 @@ export default function App() {
             </p>
 
             <p>RR-2 Vipin Garden, Uttam Nagar, New Delhi - 110059</p>
-
             <p>📞 +91 8168411895 · 011-49933556</p>
-
             <p>🕒 Monday - Sunday: 10AM - 9PM</p>
 
             <br />
 
-            <a
+            <button
               className="btn btn-primary"
-              href="https://wa.me/918168411895"
-              target="_blank"
-              rel="noopener noreferrer"
+              type="button"
+              onClick={() => openTawk()}
             >
-              Chat on WhatsApp
-            </a>
+              Chat with us
+            </button>
           </div>
         </div>
       </section>
 
       <footer>© 2026 RCS TECH WORLD | All Rights Reserved</footer>
 
-      <a
-        className="whatsapp-float"
-        href="https://wa.me/918168411895"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        ◯ WhatsApp us
-      </a>
-
       {modal && (
-        <div className="image-modal" onClick={() => setModal("")}>
+        <div className="image-modal" onClick={closeImage}>
           <button
             className="close-modal"
-            onClick={() => setModal("")}
+            onClick={closeImage}
             type="button"
+            aria-label="Close image"
           >
             ×
           </button>
 
-          <img
-            src={modal}
-            alt="Product"
+          <div
+            className="image-zoom-wrap"
             onClick={(e) => e.stopPropagation()}
-          />
+            onWheel={(e) => {
+              e.preventDefault();
+
+              setZoom((current) =>
+                Math.min(
+                  3,
+                  Math.max(
+                    0.7,
+                    current + (e.deltaY < 0 ? 0.1 : -0.1)
+                  )
+                )
+              );
+            }}
+          >
+            <img
+              src={modal}
+              alt="Product"
+              style={{
+                transform: `scale(${zoom})`,
+                transition: "transform 0.15s ease",
+              }}
+            />
+          </div>
+
+          <div
+            className="image-controls"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button
+              type="button"
+              onClick={() => setZoom((z) => Math.min(3, z + 0.2))}
+            >
+              +
+            </button>
+
+            <button
+              type="button"
+              onClick={() => setZoom((z) => Math.max(0.7, z - 0.2))}
+            >
+              −
+            </button>
+
+            <button type="button" onClick={() => setZoom(1)}>
+              Reset
+            </button>
+          </div>
         </div>
       )}
     </>
