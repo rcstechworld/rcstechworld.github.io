@@ -378,7 +378,7 @@ export default function App() {
           <h2 className="section-title">Available stock</h2>
 
           <p className="section-subtitle">
-            Search live inventory, then filter by warranty and condition.
+            Explore live inventory by brand, RAM, SSD, processor, and other configurations.
           </p>
 
           <div className="search-box">
@@ -574,59 +574,60 @@ export default function App() {
             </div>
 
             <form onSubmit={submitEnquiry} className="enquiry-form">
-              <label>
-                Name *
-                <input
-                  name="name"
-                  value={form.name}
-                  onChange={handleFormChange}
-                  required
-                  placeholder="Your name"
-                />
-              </label>
+  <label>
+    Name *
+    <input
+      name="name"
+      value={form.name}
+      onChange={handleFormChange}
+      required
+      placeholder="Your name"
+      autoComplete="name"
+    />
+  </label>
 
-              <label>
-                Mobile *
-                <input
-                  name="mobile"
-                  value={form.mobile}
-                  onChange={handleFormChange}
-                  required
-                  inputMode="tel"
-                  pattern="[0-9+() -]{10,}"
-                  autoComplete="tel"
-                  placeholder="Your mobile number"
-                />
-              </label>
+  <label>
+    Mobile *
+    <input
+      name="mobile"
+      value={form.mobile}
+      onChange={handleFormChange}
+      required
+      inputMode="tel"
+      autoComplete="tel"
+      pattern="[0-9+() -]{10,}"
+      placeholder="Your mobile number"
+    />
+  </label>
 
-              <label>
-                Email *
-                <input
-                  name="email"
-                  type="email"
-                  value={form.email}
-                  onChange={handleFormChange}
-                  placeholder="your@email.com"
-                  autoComplete="email"
-                  required
-                />
-              </label>
+  <label>
+    Email *
+    <input
+      name="email"
+      type="email"
+      value={form.email}
+      onChange={handleFormChange}
+      required
+      autoComplete="email"
+      placeholder="your@email.com"
+    />
+  </label>
 
-              <label>
-                Message
-                <textarea
-                  name="message"
-                  rows="4"
-                  value={form.message}
-                  onChange={handleFormChange}
-                  placeholder="What are you looking for?"
-                />
-              </label>
+  <label>
+    Message
+    <textarea
+      name="message"
+      value={form.message}
+      onChange={handleFormChange}
+      placeholder="What are you looking for?"
+      rows="4"
+    />
+  </label>
 
-              <button className="btn btn-primary enquiry-submit" type="submit">
-                Send on WhatsApp
-              </button>
-            </form>
+  <button type="submit" className="btn enquiry-submit">
+    Send on WhatsApp
+  </button>
+</form>
           </div>
         </div>
       )}
