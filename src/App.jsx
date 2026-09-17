@@ -481,7 +481,7 @@ export default function App() {
       <section id="contact" className="contact-section">
         <div className="container">
           <div className="contact-card">
-            <h2>Need help choosing a laptop?</h2>
+            <h2> You Choose Us. We Help You Choose Right. </h2>
 
             <p>
               <strong>RCS TECH WORLD</strong>
