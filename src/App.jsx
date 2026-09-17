@@ -334,7 +334,7 @@ export default function App() {
       <section className="hero">
         <div className="hero-inner">
           <div>
-            <div className="eyebrow">RCS TECH WORLD · DELHI</div>
+            <div className="eyebrow"> RCS TECH WORLD — Where Trust Never Dies. </div>
 
             <h1>
               Quality laptops.
