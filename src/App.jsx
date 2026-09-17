@@ -35,15 +35,6 @@ function Card({ p, onZoom, onEnquire }) {
           {p.condition}
         </div>
 
-        <button
-          className="zoom-btn"
-          type="button"
-          onClick={() => onZoom(p.image)}
-          aria-label="Zoom image"
-        >
-          ⌕
-        </button>
-
         <div
           className="product-image"
           role="button"
@@ -68,9 +59,7 @@ function Card({ p, onZoom, onEnquire }) {
 
       <div className="product-info">
         <h3>{p.brand} {p.model}</h3>
-
         <div className="price">₹{p.price || "Contact for price"}</div>
-
         <div className="stock">🔥 {p.stock || "Only Few Left"}</div>
 
         <div className="warranty-box">
@@ -123,21 +112,31 @@ export default function App() {
   const [condition, setCondition] = useState("");
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
-  const [updated, setUpdated] = useState(null);
 
   const [modal, setModal] = useState("");
   const [zoom, setZoom] = useState(1);
 
-  // Load Tawk.to once.
+  const [enquiryOpen, setEnquiryOpen] = useState(false);
+  const [selectedProduct, setSelectedProduct] = useState(null);
+  const [form, setForm] = useState({
+    name: "",
+    mobile: "",
+    email: "",
+    message: "",
+  });
+
+  // Tawk.to live chat
   useEffect(() => {
     window.Tawk_API = window.Tawk_API || {};
     window.Tawk_LoadStart = new Date();
 
-    const existingScript = document.querySelector(
-      'script[src*="embed.tawk.to/5cece1a32135900bac12ccc2"]'
-    );
-
-    if (existingScript) return;
+    if (
+      document.querySelector(
+        'script[src*="embed.tawk.to/5cece1a32135900bac12ccc2"]'
+      )
+    ) {
+      return;
+    }
 
     const script = document.createElement("script");
     script.async = true;
@@ -145,48 +144,8 @@ export default function App() {
       "https://embed.tawk.to/5cece1a32135900bac12ccc2/default";
     script.charset = "UTF-8";
     script.setAttribute("crossorigin", "*");
-
     document.body.appendChild(script);
   }, []);
-
-  const openTawk = (product = null) => {
-    const message = product
-      ? `Hello, I am interested in ${product.brand} ${product.model} (SKU: ${product.sku}).`
-      : "";
-
-    // If Tawk has loaded, open the chat immediately.
-    if (window.Tawk_API) {
-      if (message && typeof window.Tawk_API.setAttributes === "function") {
-        window.Tawk_API.setAttributes(
-          {
-            product: `${product.brand} ${product.model}`,
-            sku: product.sku,
-          },
-          function () {}
-        );
-      }
-
-      if (typeof window.Tawk_API.maximize === "function") {
-        window.Tawk_API.maximize();
-        return;
-      }
-
-      if (typeof window.Tawk_API.toggle === "function") {
-        window.Tawk_API.toggle();
-        return;
-      }
-    }
-
-    // Tawk can still be loading when the user clicks.
-    // Give it a moment and then open it.
-    setTimeout(() => {
-      if (window.Tawk_API?.maximize) {
-        window.Tawk_API.maximize();
-      } else if (window.Tawk_API?.toggle) {
-        window.Tawk_API.toggle();
-      }
-    }, 1000);
-  };
 
   const load = () => {
     setLoading(true);
@@ -223,33 +182,29 @@ export default function App() {
           }))
           .filter((p) => {
             if (!p.sku || seen.has(p.sku)) return false;
-
             seen.add(p.sku);
             return true;
           });
 
         setProducts(data);
-        setUpdated(new Date());
         setLoading(false);
 
         if (!data.length) {
-          setError("Google Sheet loaded, but no products with SKU were found.");
+          setError("No products are currently available.");
         }
       },
 
       error: (error) => {
         console.error("Google Sheet Error:", error);
         setLoading(false);
-        setError("Unable to load live stock from Google Sheet.");
+        setError("Unable to load products right now. Please try again shortly.");
       },
     });
   };
 
   useEffect(() => {
     load();
-
     const timer = setInterval(load, 30000);
-
     return () => clearInterval(timer);
   }, []);
 
@@ -307,12 +262,54 @@ export default function App() {
     setZoom(1);
   };
 
+  const openEnquiry = (product = null) => {
+    setSelectedProduct(product);
+    setForm({
+      name: "",
+      mobile: "",
+      email: "",
+      message: product
+        ? `I am interested in ${product.brand} ${product.model} (SKU: ${product.sku}). Please share availability and final price.`
+        : "",
+    });
+    setEnquiryOpen(true);
+  };
+
+  const closeEnquiry = () => {
+    setEnquiryOpen(false);
+    setSelectedProduct(null);
+  };
+
+  const handleFormChange = (e) => {
+    const { name, value } = e.target;
+    setForm((current) => ({ ...current, [name]: value }));
+  };
+
+  const submitEnquiry = (e) => {
+    e.preventDefault();
+
+    const productText = selectedProduct
+      ? `Product: ${selectedProduct.brand} ${selectedProduct.model}\nSKU: ${selectedProduct.sku}\nPrice: ₹${selectedProduct.price}`
+      : "Product: General Enquiry";
+
+    const text = encodeURIComponent(
+      `Hello RCS TECH WORLD,\n\n${productText}\n\nName: ${form.name}\nMobile: ${form.mobile}\nEmail: ${form.email || "Not provided"}\n\nMessage:\n${form.message || "Please contact me regarding your laptop requirement."}`
+    );
+
+    window.open(
+      `https://wa.me/918168411895?text=${text}`,
+      "_blank",
+      "noopener,noreferrer"
+    );
+
+    closeEnquiry();
+  };
+
   return (
     <>
       <nav>
         <div className="logo-wrap">
           <div className="logo-mark">RCS</div>
-
           <div>
             <div className="logo-title">RCS TECH WORLD</div>
             <div className="logo-sub">LAPTOPS · DESKTOPS · UPGRADES</div>
@@ -327,7 +324,7 @@ export default function App() {
           <button
             className="enquire"
             type="button"
-            onClick={() => openTawk()}
+            onClick={() => openEnquiry()}
           >
             ●&nbsp; Enquire
           </button>
@@ -360,7 +357,7 @@ export default function App() {
               <button
                 className="btn btn-secondary"
                 type="button"
-                onClick={() => openTawk()}
+                onClick={() => openEnquiry()}
               >
                 Enquire Now
               </button>
@@ -385,12 +382,11 @@ export default function App() {
           </p>
 
           <div className="search-box">
-            <span className="search-icon">⌕</span>
-
             <input
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              placeholder="Search by model, brand, processor, RAM..."
+              placeholder=""
+              aria-label="Search products"
             />
           </div>
 
@@ -434,35 +430,7 @@ export default function App() {
             </div>
           </div>
 
-          <div className="stock-toolbar">
-            <div className="count">
-              {loading
-                ? "Loading live stock..."
-                : `${filtered.length} ${
-                    filtered.length === 1 ? "device" : "devices"
-                  } found`}
-
-              {updated && !loading && (
-                <small> · Updated {updated.toLocaleTimeString()}</small>
-              )}
-            </div>
-
-            <button
-              className="filter-btn"
-              onClick={load}
-              disabled={loading}
-            >
-              {loading ? "↻ Loading..." : "↻ Refresh Stock"}
-            </button>
-          </div>
-
           <div className="products">
-            {loading && (
-              <div className="loading">
-                Loading live stock from Google Sheet…
-              </div>
-            )}
-
             {!loading && error && <div className="empty">{error}</div>}
 
             {!loading && !error && !filtered.length && (
@@ -478,7 +446,7 @@ export default function App() {
                   key={p.sku}
                   p={p}
                   onZoom={openImage}
-                  onEnquire={openTawk}
+                  onEnquire={openEnquiry}
                 />
               ))}
           </div>
@@ -528,9 +496,9 @@ export default function App() {
             <button
               className="btn btn-primary"
               type="button"
-              onClick={() => openTawk()}
+              onClick={() => openEnquiry()}
             >
-              Chat with us
+              Send Enquiry
             </button>
           </div>
         </div>
@@ -554,15 +522,8 @@ export default function App() {
             onClick={(e) => e.stopPropagation()}
             onWheel={(e) => {
               e.preventDefault();
-
               setZoom((current) =>
-                Math.min(
-                  3,
-                  Math.max(
-                    0.7,
-                    current + (e.deltaY < 0 ? 0.1 : -0.1)
-                  )
-                )
+                Math.min(3, Math.max(0.7, current + (e.deltaY < 0 ? 0.1 : -0.1)))
               );
             }}
           >
@@ -580,23 +541,92 @@ export default function App() {
             className="image-controls"
             onClick={(e) => e.stopPropagation()}
           >
+            <button type="button" onClick={() => setZoom((z) => Math.min(3, z + 0.2))}>+</button>
+            <button type="button" onClick={() => setZoom((z) => Math.max(0.7, z - 0.2))}>−</button>
+            <button type="button" onClick={() => setZoom(1)}>Reset</button>
+          </div>
+        </div>
+      )}
+
+      {enquiryOpen && (
+        <div className="enquiry-modal" onClick={closeEnquiry}>
+          <div
+            className="enquiry-box"
+            onClick={(e) => e.stopPropagation()}
+          >
             <button
+              className="close-modal enquiry-close"
+              onClick={closeEnquiry}
               type="button"
-              onClick={() => setZoom((z) => Math.min(3, z + 0.2))}
+              aria-label="Close enquiry"
             >
-              +
+              ×
             </button>
 
-            <button
-              type="button"
-              onClick={() => setZoom((z) => Math.max(0.7, z - 0.2))}
-            >
-              −
-            </button>
+            <div className="enquiry-header">
+              <span>RCS TECH WORLD</span>
+              <h2>Send Enquiry</h2>
+              <p>
+                {selectedProduct
+                  ? `${selectedProduct.brand} ${selectedProduct.model}`
+                  : "Tell us what laptop you are looking for."}
+              </p>
+            </div>
 
-            <button type="button" onClick={() => setZoom(1)}>
-              Reset
-            </button>
+            <form onSubmit={submitEnquiry} className="enquiry-form">
+              <label>
+                Name *
+                <input
+                  name="name"
+                  value={form.name}
+                  onChange={handleFormChange}
+                  required
+                  placeholder="Your name"
+                />
+              </label>
+
+              <label>
+                Mobile *
+                <input
+                  name="mobile"
+                  value={form.mobile}
+                  onChange={handleFormChange}
+                  required
+                  inputMode="tel"
+                  pattern="[0-9+() -]{10,}"
+                  autoComplete="tel"
+                  placeholder="Your mobile number"
+                />
+              </label>
+
+              <label>
+                Email *
+                <input
+                  name="email"
+                  type="email"
+                  value={form.email}
+                  onChange={handleFormChange}
+                  placeholder="your@email.com"
+                  autoComplete="email"
+                  required
+                />
+              </label>
+
+              <label>
+                Message
+                <textarea
+                  name="message"
+                  rows="4"
+                  value={form.message}
+                  onChange={handleFormChange}
+                  placeholder="What are you looking for?"
+                />
+              </label>
+
+              <button className="btn btn-primary enquiry-submit" type="submit">
+                Send on WhatsApp
+              </button>
+            </form>
           </div>
         </div>
       )}
