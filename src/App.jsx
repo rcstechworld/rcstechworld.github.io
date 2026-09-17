@@ -147,66 +147,87 @@ export default function App() {
     document.body.appendChild(script);
   }, []);
 
-  const load = () => {
+  const load = (silent = false) => {
+  // First load par loading show hoga.
+  // Background refresh par loading nahi dikhega.
+  if (!silent) {
     setLoading(true);
-    setError("");
+  }
 
-    const freshURL = `${SHEET_URL}&cache=${Date.now()}`;
+  setError("");
 
-    Papa.parse(freshURL, {
-      download: true,
-      header: true,
-      skipEmptyLines: true,
+  const freshURL = `${SHEET_URL}&cache=${Date.now()}`;
 
-      complete: (results) => {
-        console.log("Google Sheet Data:", results.data);
-        console.log("Google Sheet Headers:", results.meta.fields);
+  Papa.parse(freshURL, {
+    download: true,
+    header: true,
+    skipEmptyLines: true,
 
-        const seen = new Set();
+    complete: (results) => {
+      const rows = Array.isArray(results.data) ? results.data : [];
 
-        const data = (results.data || [])
-          .map((p) => ({
-            condition: val(p.Condition) || "Refurbished",
-            brand: val(p.Brand),
-            model: val(p.Model),
-            processor: val(p.Processor),
-            ram: val(p.RAM),
-            ssd: val(p["HDD/SSD"]),
-            screen: val(p.Screen),
-            price: val(p["Base Price"]) || val(p.Price),
-            sku: val(p.SKU) || val(p.sku),
-            image: img(p["Image URL"]),
-            os: val(p.OS) || "Windows Pro",
-            warranty: val(p.Warranty),
-            stock: val(p.Stock) || "Only Few Left",
-          }))
-          .filter((p) => {
-            if (!p.sku || seen.has(p.sku)) return false;
-            seen.add(p.sku);
-            return true;
-          });
+      const data = rows
+        .map((row) => ({
+          condition: val(row["Condition"]),
+          brand: val(row["Brand"]),
+          model: val(row["Model"]),
+          processor: val(row["Processor"]),
+          ram: val(row["RAM"]),
+          hdd: val(row["HDD"]),
+          ssd: val(row["SSD"]),
+          screen: val(row["Screen"]),
+          basePrice: val(row["Base Price"]),
+          price: val(row["Price"]),
+          sku: val(row["SKU"]),
+          image: img(row["Image URL"]),
+          os: val(row["OS"]),
+          warranty: val(row["Warranty"]),
+          stock: val(row["Stock"]),
+        }))
+        .filter((p) => p.sku || p.model || p.brand);
 
-        setProducts(data);
+      setProducts(data);
+
+      // Background refresh ke time loading hide nahi karna
+      // kyunki loading already show nahi ho rahi.
+      if (!silent) {
         setLoading(false);
+      }
 
-        if (!data.length) {
-          setError("No products are currently available.");
-        }
-      },
+      if (!data.length) {
+        setError(
+          "Live inventory is currently unavailable. Please contact RCS TECH WORLD on WhatsApp."
+        );
+      }
+    },
 
-      error: (error) => {
-        console.error("Google Sheet Error:", error);
+    error: (error) => {
+      console.error("Google Sheet Error:", error);
+
+      // First load par error handle karo.
+      // Background refresh fail ho to existing products ko
+      // screen par rehne do.
+      if (!silent) {
         setLoading(false);
-        setError("Unable to load products right now. Please try again shortly.");
-      },
-    });
-  };
+        setError(
+          "Live inventory is currently unavailable. Please contact RCS TECH WORLD on WhatsApp."
+        );
+      }
+    },
+  });
+};
 
   useEffect(() => {
-    load();
-    const timer = setInterval(load, 30000);
-    return () => clearInterval(timer);
-  }, []);
+  // Initial page load
+  load(false);
+
+  // Silent background inventory refresh every 60 seconds
+  const timer = setInterval(() => {
+    load(true);
+  }, 60000);
+
+  return () => clearInterval(timer);
+}, []);
 
   const filtered = useMemo(() => {
     const q = search.toLowerCase().trim();
