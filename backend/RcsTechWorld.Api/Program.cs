@@ -1,4 +1,5 @@
 using RcsTechWorld.Api.Models;
+using RcsTechWorld.Api.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,6 +9,9 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+// Google Sheets
+builder.Services.AddSingleton<GoogleSheetsService>();
 
 // CORS
 builder.Services.AddCors(options =>
@@ -46,12 +50,17 @@ if (app.Environment.IsDevelopment())
     });
 }
 
-app.UseHttpsRedirection();
+// Render handles HTTPS at the proxy/edge level.
+// No HTTPS redirection is required inside the container.
+
+// ================================
+// CORS
+// ================================
 
 app.UseCors("RcsTechWorldFrontend");
 
 // ================================
-// API: Health
+// API: Status
 // ================================
 
 app.MapGet("/", () =>
@@ -66,6 +75,9 @@ app.MapGet("/", () =>
 .WithName("ApiStatus")
 .WithOpenApi();
 
+// ================================
+// API: Health
+// ================================
 
 app.MapGet("/api/health", () =>
 {
@@ -82,31 +94,55 @@ app.MapGet("/api/health", () =>
 // API: Create Order
 // ================================
 
-app.MapPost("/api/orders", (CreateOrderRequest request) =>
-{
-    var orderId =
-        $"RCTW-{DateTime.UtcNow:yyyyMMddHHmmss}-{Random.Shared.Next(100, 999)}";
+app.MapPost(
+    "/api/orders",
+    async (
+        CreateOrderRequest request,
+        GoogleSheetsService googleSheets) =>
+    {
+        var orderId =
+            $"RCTW-{DateTime.UtcNow:yyyyMMddHHmmss}-{Random.Shared.Next(100, 999)}";
 
-    var order = new Order(
-        OrderId: orderId,
-        ProductName: request.ProductName,
-        ProductUrl: request.ProductUrl,
-        Amount: request.Amount,
-        CustomerName: request.CustomerName,
-        CustomerMobile: request.CustomerMobile,
-        CustomerEmail: request.CustomerEmail,
-        CustomerAddress: request.CustomerAddress,
-        Status: "Pending",
-        CreatedAt: DateTime.UtcNow
-    );
+        var now = DateTime.UtcNow;
 
-    orders[orderId] = order;
+        var order = new Order(
+            OrderId: orderId,
+            ProductName: request.ProductName,
+            ProductUrl: request.ProductUrl,
+            Amount: request.Amount,
+            CustomerName: request.CustomerName,
+            CustomerMobile: request.CustomerMobile,
+            CustomerEmail: request.CustomerEmail,
+            CustomerAddress: request.CustomerAddress,
+            Status: "Pending",
+            CreatedAt: now
+        );
 
-    return Results.Created(
-        $"/api/orders/{orderId}",
-        order
-    );
-})
+        // Keep temporary in-memory copy
+        orders[orderId] = order;
+
+        // Save transaction to Google Sheets
+        await googleSheets.AppendOrderAsync(
+            order.OrderId,
+            order.ProductName,
+            order.ProductUrl,
+            order.Amount,
+            order.CustomerName,
+            order.CustomerMobile,
+            order.CustomerEmail,
+            order.CustomerAddress,
+            order.Status,
+            "",
+            "",
+            order.CreatedAt,
+            now
+        );
+
+        return Results.Created(
+            $"/api/orders/{orderId}",
+            order
+        );
+    })
 .WithName("CreateOrder")
 .WithOpenApi();
 
